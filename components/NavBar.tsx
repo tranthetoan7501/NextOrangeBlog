@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import {
   Navbar,
-  MobileNav,
+  Collapse,
   Typography,
   Button,
   Menu,
@@ -182,9 +182,9 @@ export function NavBar() {
         </IconButton>
         <ProfileMenu />
       </div>
-      <MobileNav open={isNavOpen} className='overflow-scroll'>
+      <Collapse open={isNavOpen} className='overflow-scroll'>
         <NavList />
-      </MobileNav>
+      </Collapse>
     </Navbar>
   );
 }
