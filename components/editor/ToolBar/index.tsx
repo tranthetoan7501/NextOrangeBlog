@@ -16,6 +16,7 @@ import {
 } from "react-icons/bs";
 import { AiFillCaretDown } from "react-icons/ai";
 import { RiDoubleQuotesL } from "react-icons/ri";
+import InsertLink from "../Link/InsertLink";
 interface Props {
   editor: Editor | null;
   onOpenImageClick?(): void;
@@ -97,7 +98,7 @@ export default function ToolBar({ editor, onOpenImageClick }: Props) {
           <BsBraces />
         </Button>
 
-        {/* <InsertLink onSubmit={handleLinkSubmit} /> */}
+        <InsertLink onSubmit={() => {}} />
 
         <Button
           active={editor.isActive("orderedList")}

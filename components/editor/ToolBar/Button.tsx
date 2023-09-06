@@ -16,13 +16,13 @@ export default function Button({
   onClick,
 }: Props) {
   const getActiveStyle = useCallback((): string => {
-    if (active)
-      return "dark:bg-primary dark:text-primary-dark bg-primary-dark text-primary";
-    else return "text-secondary-light bg-secondary-dark";
+    if (active) {
+      return "dark:bg-primary dark:text-primary-dark bg-primary-dark text-primary bg-gray-500";
+    } else return "text-secondary-light bg-secondary-dark bg-gray-300";
   }, [active]);
 
   const commonClasses =
-    "p-2 border bg-gray-300 rounded text-lg hover:scale-110 hover:shadow-md transition ";
+    "p-2 border rounded text-lg hover:scale-110 hover:shadow-md transition ";
 
   return (
     <button

@@ -4,6 +4,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Placeholder from "@tiptap/extension-placeholder";
+
 export default function Editor() {
   const editor = useEditor({
     extensions: [
@@ -16,7 +17,7 @@ export default function Editor() {
     editorProps: {
       attributes: {
         class:
-          "prose prose-lg prose-headings:font-sans focus:outline-none dark:prose-invert max-w-full mx-auto h-full",
+          "prose prose-lg focus:outline-none dark:prose-invert max-w-full mx-auto h-full",
       },
     },
   });
