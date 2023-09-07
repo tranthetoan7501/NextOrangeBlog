@@ -10,7 +10,6 @@ export default function InsertLink({ onSubmit }: Props) {
   const [visible, setVisible] = useState(false);
   const handleSubmit = (link: linkOption) => {
     if (!link.url.trim()) return setVisible(false);
-
     onSubmit(link);
     setVisible(false);
   };
