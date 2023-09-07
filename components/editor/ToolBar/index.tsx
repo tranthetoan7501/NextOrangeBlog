@@ -17,6 +17,7 @@ import {
 import { AiFillCaretDown } from "react-icons/ai";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import InsertLink from "../Link/InsertLink";
+import { linkOption } from "../Link/LinkForm";
 interface Props {
   editor: Editor | null;
   onOpenImageClick?(): void;
@@ -42,11 +43,22 @@ export default function ToolBar({ editor, onOpenImageClick }: Props) {
       onClick: () => getFocusedEditor(editor).toggleHeading({ level: 3 }).run(),
     },
   ];
+
+  const handleLinkSubmit = ({ url, openInNewTab }: linkOption) => {
+    const { commands } = editor;
+    if (openInNewTab) commands.setLink({ href: url, target: "_blank" });
+    else commands.setLink({ href: url });
+  };
+
+  const handleEmbedYoutube = (url: string) => {
+    //editor.chain().focus().setYoutubeVideo({ src: url }).run();
+  };
+
   return (
-    <div className='flex'>
-      <DropDown name='Font' options={options} />
-      <div className='h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8' />
-      <div className='flex items-center space-x-3'>
+    <div className="flex">
+      <DropDown name="Font" options={options} />
+      <div className="h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8" />
+      <div className="flex items-center space-x-3">
         <Button
           active={editor.isActive("bold")}
           onClick={() => getFocusedEditor(editor).toggleBold().run()}
@@ -74,9 +86,9 @@ export default function ToolBar({ editor, onOpenImageClick }: Props) {
           <BsTypeStrikethrough />
         </Button>
       </div>
-      <div className='h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8' />
+      <div className="h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8" />
 
-      <div className='flex items-center space-x-3'>
+      <div className="flex items-center space-x-3">
         <Button
           active={editor.isActive("blockquote")}
           onClick={() => getFocusedEditor(editor).toggleBlockquote().run()}
@@ -98,7 +110,7 @@ export default function ToolBar({ editor, onOpenImageClick }: Props) {
           <BsBraces />
         </Button>
 
-        <InsertLink onSubmit={() => {}} />
+        <InsertLink onSubmit={handleLinkSubmit} />
 
         <Button
           active={editor.isActive("orderedList")}
@@ -115,9 +127,9 @@ export default function ToolBar({ editor, onOpenImageClick }: Props) {
         </Button>
       </div>
 
-      <div className='h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8' />
+      <div className="h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8" />
 
-      <div className='flex items-center space-x-3'>
+      <div className="flex items-center space-x-3">
         {/* <EmbedYoutube onSubmit={handleEmbedYoutube} /> */}
         <Button active={editor.isActive("embedYoutube")}>
           <BsYoutube />
