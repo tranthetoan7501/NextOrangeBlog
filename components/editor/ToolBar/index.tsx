@@ -18,6 +18,7 @@ import { AiFillCaretDown } from "react-icons/ai";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import InsertLink from "../Link/InsertLink";
 import { linkOption } from "../Link/LinkForm";
+import EmbedYoutube from "../EmbedYoutube";
 interface Props {
   editor: Editor | null;
   onOpenImageClick?(): void;
@@ -49,9 +50,8 @@ export default function ToolBar({ editor, onOpenImageClick }: Props) {
     if (openInNewTab) commands.setLink({ href: url, target: "_blank" });
     else commands.setLink({ href: url });
   };
-
   const handleEmbedYoutube = (url: string) => {
-    //editor.chain().focus().setYoutubeVideo({ src: url }).run();
+    editor.chain().focus().setYoutubeVideo({ src: url }).run();
   };
 
   return (
@@ -131,9 +131,7 @@ export default function ToolBar({ editor, onOpenImageClick }: Props) {
 
       <div className="flex items-center space-x-3">
         {/* <EmbedYoutube onSubmit={handleEmbedYoutube} /> */}
-        <Button active={editor.isActive("embedYoutube")}>
-          <BsYoutube />
-        </Button>
+        <EmbedYoutube onSubmit={handleEmbedYoutube} />
         <Button onClick={onOpenImageClick}>
           <BsImageFill />
         </Button>

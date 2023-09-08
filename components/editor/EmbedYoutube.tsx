@@ -1,17 +1,20 @@
-import { BsLink45Deg } from "react-icons/bs";
-import Button from "../ToolBar/Button";
-import LinkForm, { linkOption } from "./LinkForm";
+import { BsYoutube } from "react-icons/bs";
+
 import { useEffect, useRef, useState } from "react";
+import Button from "./ToolBar/Button";
+import { Card, Input, Button as TButton } from "@material-tailwind/react";
 interface Props {
-  onSubmit(link: linkOption): void;
+  onSubmit(link: any): void;
 }
 
 export default function InsertLink({ onSubmit }: Props) {
   const [visible, setVisible] = useState(false);
+  const [url, setUrl] = useState("");
 
-  const handleSubmit = (link: linkOption) => {
-    if (!link.url.trim()) return setVisible(false);
-    onSubmit(link);
+  const handleSubmit = () => {
+    if (!url.trim()) return setVisible(false);
+    onSubmit(url);
+    setUrl("");
     setVisible(false);
   };
 
@@ -47,11 +50,24 @@ export default function InsertLink({ onSubmit }: Props) {
       className="relative"
     >
       <Button onClick={toggleDropdown}>
-        <BsLink45Deg />
+        <BsYoutube />
       </Button>
-      <div className="absolute top-12 -right-28 mt-4 z-50">
-        <LinkForm visible={visible} onSubmit={handleSubmit} />
-      </div>
+      {visible && (
+        <div className="absolute top-12 -right-28 mt-4 z-50">
+          <Card className="mt-1 w-60 p-3">
+            <Input
+              label="Link Youtube"
+              crossOrigin={undefined}
+              value={url}
+              onChange={({ target }) => setUrl(target.value)}
+            />
+
+            <TButton className="mt-2" onClick={handleSubmit} color="green">
+              Apply
+            </TButton>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }
