@@ -1,6 +1,6 @@
-import { NavBar } from "@/components/NavBar";
+import { NavBar } from "@/components/common/NavBar";
 import "@/styles/globals.css";
-import { MySpeedDial } from "@/components/SpeedDial";
+import { MySpeedDial } from "@/components/common/SpeedDial";
 import type { AppProps } from "next/app";
 import { Yrsa } from "next/font/google";
 const roboto = Yrsa({

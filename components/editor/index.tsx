@@ -8,9 +8,11 @@ import Youtube from "@tiptap/extension-youtube";
 import Link from "@tiptap/extension-link";
 import { useEffect, useState } from "react";
 import EditLink from "./Link/EditLink";
+import GalleryModel from "./GalleryModel";
 
 export default function Editor() {
   const [selectionRange, setSelectionRange] = useState<Range>();
+  const [showGallery, setShowGallery] = useState(false);
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -59,10 +61,14 @@ export default function Editor() {
   }, [editor, selectionRange]);
   return (
     <>
-      <ToolBar editor={editor} />
+      <ToolBar editor={editor} onOpenImageClick={() => setShowGallery(true)} />
       <div className="h-[1px] w-full bg-black dark:bg-secondary-light my-3" />
       {editor ? <EditLink editor={editor} /> : null}
       <EditorContent editor={editor} />
+      <GalleryModel
+        visible={showGallery}
+        onClose={() => setShowGallery(false)}
+      />
     </>
   );
 }

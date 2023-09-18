@@ -1,4 +1,4 @@
-import { DropDown } from "@/components/DropDown";
+import { DropDown } from "@/components/common/DropDown";
 import { getFocusedEditor } from "@/utils/EditorUtils";
 import { Editor } from "@tiptap/react";
 import Button from "./Button";
