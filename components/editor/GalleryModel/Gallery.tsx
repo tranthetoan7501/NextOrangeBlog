@@ -1,164 +1,34 @@
-import Image from "./Image";
-const images = [
-  {
-    id: 1,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 1",
-  },
-  {
-    id: 2,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 2",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
-  {
-    id: 3,
-    src: "/temp.jpg",
-    alt: "Hình ảnh 3",
-  },
+import { BsCardImage } from "react-icons/bs";
+import Images from "./Image";
 
-  // Thêm các đối tượng hình ảnh khác nếu cần
-];
 interface Props {
   images: { src: string }[];
-  onSelect(src: string): void;
   uploading?: boolean;
-  selectedImage?: string;
+  onSelect(index: number): void;
+  selectedImage?: number;
 }
-export default function Gallery() {
+export default function Gallery({
+  images,
+  uploading = false,
+  onSelect,
+  selectedImage = -1,
+}: Props) {
   return (
     <div className="flex flex-wrap">
-      {images.map(({ src, alt }, index) => {
+      {uploading && (
+        <div className="basis-1/4 overflow-hidden cursor-pointer pt-4 w-36 h-36 flex items-center justify-center text-black-700 rounded animate-pulse">
+          <BsCardImage size={50} className="p-2" />
+          <p> Uploading</p>
+        </div>
+      )}
+      {images.map(({ src }, index) => {
         return (
           <div key={index} className="basis-1/4 p-0.5">
-            <Image
+            <Images
+              alt="sdasdas"
               src={src}
-              selected={true}
-              //   onClick={() => onselect(src)}
+              selected={selectedImage === index}
+              onClick={() => onSelect(index)}
             />
           </div>
         );

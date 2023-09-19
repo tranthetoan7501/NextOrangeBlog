@@ -8,7 +8,8 @@ import Youtube from "@tiptap/extension-youtube";
 import Link from "@tiptap/extension-link";
 import { useEffect, useState } from "react";
 import EditLink from "./Link/EditLink";
-import GalleryModel from "./GalleryModel";
+import GalleryModel, { ImageSelectionResult } from "./GalleryModel";
+import TipTapImage from "@tiptap/extension-image";
 
 export default function Editor() {
   const [selectionRange, setSelectionRange] = useState<Range>();
@@ -35,6 +36,11 @@ export default function Editor() {
           class: "mx-auto rounded",
         },
       }),
+      TipTapImage.configure({
+        HTMLAttributes: {
+          class: "mx-auto",
+        },
+      }),
     ],
     editorProps: {
       handleClick(view, pos, event) {
@@ -54,6 +60,13 @@ export default function Editor() {
     },
   });
 
+  const handleImageSelection = (result: ImageSelectionResult) => {
+    editor
+      ?.chain()
+      .focus()
+      .setImage({ src: result.src, alt: result.altText })
+      .run();
+  };
   useEffect(() => {
     if (editor && selectionRange) {
       editor.commands.setTextSelection(selectionRange);
@@ -68,6 +81,7 @@ export default function Editor() {
       <GalleryModel
         visible={showGallery}
         onClose={() => setShowGallery(false)}
+        onSelect={handleImageSelection}
       />
     </>
   );
