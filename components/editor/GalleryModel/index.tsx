@@ -154,9 +154,9 @@ export interface ImageSelectionResult {
   altText: string;
 }
 interface Props extends ModalProps {
-  images: { src: string }[];
+  images?: { src: string }[];
   uploading?: boolean;
-  onFileSelect(image: File): void;
+  onFileSelect?(image: File): void;
   onSelect(result: ImageSelectionResult): void;
 }
 
@@ -177,7 +177,7 @@ export default function GallaryModel({
     const file = files[0];
     if (!file.type.startsWith("image")) return handleClose();
 
-    onFileSelect(file);
+    onFileSelect && onFileSelect(file);
   };
   const handleSelection = () => {
     if (!selectedImage) return handleClose();
