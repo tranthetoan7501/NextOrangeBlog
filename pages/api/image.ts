@@ -11,7 +11,7 @@ export const config = {
 
 type Data = {
   message?: string;
-  url?: string;
+  src?: string;
 };
 
 export default function handler(
@@ -35,17 +35,24 @@ async function uploadNewImage(
 ) {
   try {
     const { files } = await readFile(req);
-    const imageFile = (files as any).image as formidable.File;
-    const { secure_url: url } = await cloudinary.uploader.upload(
-      imageFile.filepath,
-      {
-        folder: "dev-blogs",
-      }
-    );
-    res.status(200).json({ url: url });
+    if (files.image) {
+      const imageFile = files.image[0];
+
+      const { secure_url: url } = await cloudinary.uploader.upload(
+        imageFile.filepath,
+        {
+          folder: "dev-blogs",
+        }
+      );
+      res.status(200).json({ src: url });
+    } else {
+      throw new Error("file is null");
+    }
   } catch (error: any) {
     console.log("error", error);
-    res.status(500).json({ message: error.error });
+    res
+      .status(500)
+      .json({ message: error.error ? error.error : error.message });
   }
 }
 
