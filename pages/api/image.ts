@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
 import cloudinary from "../../lib/cloudinary";
-import formidable from "formidable";
 import { readFile } from "../../lib/utils";
 export const config = {
   api: {
@@ -41,7 +40,7 @@ async function uploadNewImage(
       const { secure_url: url } = await cloudinary.uploader.upload(
         imageFile.filepath,
         {
-          folder: "dev-blogs",
+          folder: "orange-blogs",
         }
       );
       res.status(200).json({ src: url });
@@ -56,9 +55,19 @@ async function uploadNewImage(
   }
 }
 
-function readAllImages(
-  req: NextApiRequest,
-  res: NextApiResponse<Data | string>
-) {
-  res.status(200).json({ message: "John Does" });
+async function readAllImages(req: NextApiRequest, res: NextApiResponse<any>) {
+  try {
+    const { resources } = await cloudinary.api.resources({
+      resource_type: "image",
+      type: "upload",
+      prefix: "orange-blogs",
+    });
+
+    const images = resources.map(({ secure_url }: any) => ({
+      src: secure_url,
+    }));
+    res.json({ images });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
 }
