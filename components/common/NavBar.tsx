@@ -163,7 +163,7 @@ export function NavBar() {
         <Image src='/orange.png' alt='logo' width={30} height={30} />
         <Typography
           as='a'
-          href='#'
+          href='/'
           className='mr-4 ml-2 cursor-pointer py-1.5 font-medium'
         >
           Orange Blog
