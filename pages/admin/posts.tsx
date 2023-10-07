@@ -1,3 +1,7 @@
+import { PostCard } from "@/components/common/PostCard";
+
 export default function Home() {
-  return <h1>Posts</h1>;
+  return (
+    <div className='grid grid-cols-1 2xl:grid-cols-2 gap-4 place-items-center'></div>
+  );
 }

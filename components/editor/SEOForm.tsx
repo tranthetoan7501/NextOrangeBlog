@@ -32,6 +32,13 @@ export default function SEOForm({ initialValue, title = "", onChange }: Props) {
     setValues(newValues);
     onChange(newValues);
   }, [title]);
+
+  useEffect(() => {
+    if (initialValue) {
+      setValues({ ...initialValue, slug: slugify(initialValue.slug) });
+    }
+  }, [initialValue]);
+
   return (
     <div>
       <h3 className='block font-sans text-xl font-semibold leading-tight tracking-normal antialiased mb-4'>

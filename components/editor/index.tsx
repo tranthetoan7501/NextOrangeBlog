@@ -15,6 +15,7 @@ import SEOForm, { SeoResult } from "./SEOForm";
 import ActionButton from "../common/ActionButton";
 import { ThumbnailSelector } from "./ThumbnailSelector";
 export interface FinalPost extends SeoResult {
+  id?: string;
   title: string;
   content: string;
   thumbnail?: File | string;
@@ -153,7 +154,7 @@ export default function Editor({
       </div>
       <input
         type='text'
-        className='outline-none bg-transparent w-full border-0 border-b-[1px] border-orange-500 dark:border-secondary-light text-5xl font-semibold text-green-700 dark:text-primary mb-3'
+        className='outline-none bg-transparent w-full border-0 border-b-[1px] border-orange-500 dark:border-secondary-light text-4xl font-semibold text-green-700 dark:text-primary mb-3'
         placeholder='Title'
         onChange={updateTitle}
         value={post.title}
