@@ -143,7 +143,7 @@ export default function Editor({
 
   return (
     <>
-      <div className='flex items-center justify-between mb-3 ml=1'>
+      <div className='flex items-center justify-between mb-3'>
         <ThumbnailSelector
           initialValue={post.thumbnail as string}
           onChange={updateThumbnail}

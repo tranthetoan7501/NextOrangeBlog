@@ -8,7 +8,6 @@ export const config = {
     bodyParser: false,
   },
 };
-
 export default function handlerUpdate(
   req: NextApiRequest,
   res: NextApiResponse<any>
@@ -53,7 +52,6 @@ async function updatePost(req: NextApiRequest, res: NextApiResponse<any>) {
     tags,
   });
   if (error) return res.status(400).json({ message: error });
-
   post.title = title;
   post.content = content;
   post.meta = meta;
