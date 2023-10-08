@@ -15,7 +15,7 @@ export default function handlerUpdate(
 ) {
   const { method } = req;
   switch (method) {
-    case "PATCH":
+    case "PUT":
       return updatePost(req, res);
     default:
       return res.status(404).send("Not found!");
