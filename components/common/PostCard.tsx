@@ -26,7 +26,7 @@ export function PostCard({
 }: Props) {
   const { title, slug, meta, createdAt, tags, thumbnail } = post;
   return (
-    <Card className='mt-6 w-96 shadow-xl   shadow-gray-300'>
+    <Card className='mt-6 w-92 shadow-xl   shadow-gray-300'>
       <Link href={"/admin/post/update/" + slug}>
         <CardHeader
           color='blue-gray'

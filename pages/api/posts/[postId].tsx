@@ -30,15 +30,15 @@ interface IncomingPost {
   tags: string;
 }
 
-async function updatePost(req: NextApiRequest, res: NextApiResponse) {
+async function updatePost(req: NextApiRequest, res: NextApiResponse<any>) {
   const postId = req.query.postId as string;
-
+  console.log("postId", postId);
   const post = await Post.findById(postId);
 
   if (!post) return res.status(404).json({ error: "Post not found!" });
-  console.log("herrrr");
-  const { files, body } = await readFile<IncomingPost>(req);
-  console.log("body", body);
+
+  const { files, body } = await readFile<any>(req);
+
   let tags;
   if (body.tags) tags = JSON.parse(body.tags[0] as string);
   const title = body.title[0];
@@ -60,8 +60,6 @@ async function updatePost(req: NextApiRequest, res: NextApiResponse) {
   post.meta = meta;
   post.tags = tags;
   post.slug = slug;
-
-  console.log("Post", post);
 
   if (files.thumbnail) {
     const thumbnail = files.thumbnail[0];
