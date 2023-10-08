@@ -55,10 +55,10 @@ export default function ToolBar({ editor, onOpenImageClick }: Props) {
   };
 
   return (
-    <div className="flex">
-      <DropDown name="Font" options={options} />
-      <div className="h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8" />
-      <div className="flex items-center space-x-3">
+    <div className=' hidden sm:flex'>
+      <DropDown name='Font' options={options} />
+      <div className='h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8' />
+      <div className='flex items-center space-x-3'>
         <Button
           active={editor.isActive("bold")}
           onClick={() => getFocusedEditor(editor).toggleBold().run()}
@@ -86,9 +86,9 @@ export default function ToolBar({ editor, onOpenImageClick }: Props) {
           <BsTypeStrikethrough />
         </Button>
       </div>
-      <div className="h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8" />
+      <div className='h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8' />
 
-      <div className="flex items-center space-x-3">
+      <div className='flex items-center space-x-3'>
         <Button
           active={editor.isActive("blockquote")}
           onClick={() => getFocusedEditor(editor).toggleBlockquote().run()}
@@ -127,9 +127,9 @@ export default function ToolBar({ editor, onOpenImageClick }: Props) {
         </Button>
       </div>
 
-      <div className="h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8" />
+      <div className='h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8' />
 
-      <div className="flex items-center space-x-3">
+      <div className='flex items-center space-x-3'>
         {/* <EmbedYoutube onSubmit={handleEmbedYoutube} /> */}
         <EmbedYoutube onSubmit={handleEmbedYoutube} />
         <Button onClick={onOpenImageClick}>

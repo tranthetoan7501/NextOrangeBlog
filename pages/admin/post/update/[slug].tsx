@@ -19,7 +19,7 @@ export default function Update({ post }: Props) {
       // we have to generate FormData
       const formData = generateFormData(post);
       // submit our post
-      const { data } = await axios.post("/api/posts/" + post.id, formData);
+      const { data } = await axios.patch("/api/posts/" + post.id, formData);
     } catch (error: any) {
       console.log(error.response.data);
     }
