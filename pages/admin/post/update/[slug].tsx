@@ -19,7 +19,8 @@ export default function Update({ post }: Props) {
       // we have to generate FormData
       const formData = generateFormData(post);
       // submit our post
-      const { data } = await axios.post("/api/posts", formData);
+      await connection?.disconnect();
+      const { data } = await axios.patch("/api/posts/" + post.id, formData);
     } catch (error: any) {
       console.log(error.response.data);
     }
@@ -37,7 +38,7 @@ export default function Update({ post }: Props) {
     </div>
   );
 }
-
+let connection = null as any;
 interface ServerSideResponse {
   post: PostResponse;
 }
@@ -47,7 +48,7 @@ export const getServerSideProps: GetServerSideProps<
   try {
     const slug = context.query.slug as string;
     console.log(slug);
-    await dbConnect();
+    connection = await dbConnect();
     const post = await Post.findOne({ slug });
     if (!post) return { notFound: true };
 
@@ -68,5 +69,7 @@ export const getServerSideProps: GetServerSideProps<
     };
   } catch (error) {
     return { notFound: true };
+  } finally {
+    //
   }
 };
