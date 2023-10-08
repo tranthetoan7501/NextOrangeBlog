@@ -55,7 +55,7 @@ export default function ToolBar({ editor, onOpenImageClick }: Props) {
   };
 
   return (
-    <div className=' hidden sm:flex'>
+    <div className='hidden sm:flex'>
       <DropDown name='Font' options={options} />
       <div className='h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8' />
       <div className='flex items-center space-x-3'>

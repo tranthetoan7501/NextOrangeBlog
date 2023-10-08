@@ -143,12 +143,12 @@ export default function Editor({
 
   return (
     <>
-      <div className='flex items-center justify-between mb-3'>
+      <div className='flex items-center justify-between mb-3 ml=1'>
         <ThumbnailSelector
           initialValue={post.thumbnail as string}
           onChange={updateThumbnail}
         />
-        <div className='inline-block'>
+        <div className='hidden sm:inline-block'>
           <ActionButton busy={busy} title={btnTitle} onClick={handleSubmit} />
         </div>
       </div>

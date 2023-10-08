@@ -40,7 +40,7 @@ export default function SEOForm({ initialValue, title = "", onChange }: Props) {
   }, [initialValue]);
 
   return (
-    <div>
+    <div className='hidden sm:block'>
       <h3 className='block font-sans text-xl font-semibold leading-tight tracking-normal antialiased mb-4'>
         SEO Section
       </h3>
