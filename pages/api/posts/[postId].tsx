@@ -15,13 +15,12 @@ export default function handlerUpdate(
 ) {
   const { method } = req;
   switch (method) {
-    case "PUT":
+    case "POST":
       return updatePost(req, res);
     default:
       return res.status(404).send("Not found!");
   }
 }
-
 interface IncomingPost {
   title: string;
   content: string;
