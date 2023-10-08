@@ -69,8 +69,8 @@ async function updatePost(req: NextApiRequest, res: NextApiResponse<any>) {
         folder: "orange-blogs",
       }
     );
-    const publicId = post.thumbnail?.public_id;
-    if (publicId) await cloudinary.uploader.destroy(publicId);
+    // const publicId = post.thumbnail?.public_id;
+    // if (publicId) await cloudinary.uploader.destroy(publicId);
 
     post.thumbnail = { url, public_id };
   }
