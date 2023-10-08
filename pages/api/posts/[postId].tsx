@@ -61,19 +61,19 @@ async function updatePost(req: NextApiRequest, res: NextApiResponse<any>) {
   post.tags = tags;
   post.slug = slug;
 
-  // if (files.thumbnail) {
-  //   const thumbnail = files.thumbnail[0];
-  //   const { secure_url: url, public_id } = await cloudinary.uploader.upload(
-  //     thumbnail.filepath,
-  //     {
-  //       folder: "orange-blogs",
-  //     }
-  //   );
-  //   // const publicId = post.thumbnail?.public_id;
-  //   // if (publicId) await cloudinary.uploader.destroy(publicId);
+  if (files.thumbnail) {
+    const thumbnail = files.thumbnail[0];
+    const { secure_url: url, public_id } = await cloudinary.uploader.upload(
+      thumbnail.filepath,
+      {
+        folder: "orange-blogs",
+      }
+    );
+    const publicId = post.thumbnail?.public_id;
+    if (publicId) await cloudinary.uploader.destroy(publicId);
 
-  //   post.thumbnail = { url, public_id };
-  // }
+    post.thumbnail = { url, public_id };
+  }
   await post.save();
   res.json({ post });
 }
