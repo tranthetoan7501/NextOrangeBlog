@@ -17,7 +17,7 @@ import Link from "next/link";
 
 export function MySpeedDial() {
   return (
-    <div className='fixed bottom-4 right-4'>
+    <div className='fixed bottom-4 right-4 hidden sm:block'>
       <SpeedDial>
         <SpeedDialHandler>
           <IconButton size='lg' className='rounded-full'>
