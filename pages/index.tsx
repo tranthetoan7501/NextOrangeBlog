@@ -8,6 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 import { PostCard } from "@/components/common/PostCard";
 import AppHeader from "@/components/common/AppHeader";
+import InfiniteScrollPosts from "@/components/common/InfiniteScrollPosts";
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 export default function Home({ posts }: Props) {
@@ -30,25 +31,15 @@ export default function Home({ posts }: Props) {
     }
   };
   return (
-    <div className='grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-12 top-3 place-items-center'>
+    <div>
       <AppHeader title='Home' />
-      {postsToRender.map((post) => (
-        <PostCard
-          key={post.slug}
-          post={post}
-          controls={isAdmin}
-          onDeleteClick={async () => {
-            try {
-              await axios.delete("/api/posts/" + post.slug);
-              setPostsToRender(
-                postsToRender.filter((p) => p.slug !== post.slug)
-              );
-            } catch (error) {
-              console.log(error);
-            }
-          }}
-        />
-      ))}
+      <InfiniteScrollPosts
+        hasMore={hasMorePosts}
+        next={fetchMorePosts}
+        dataLength={postsToRender.length}
+        posts={postsToRender}
+        showControls
+      />
     </div>
   );
 }

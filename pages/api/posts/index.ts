@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import cloudinary from "@/lib/cloudinary";
 import dbConnect from "@/lib/dbConnect";
-import { readFile } from "@/lib/utils";
+import { formatPosts, readFile, readPostsFromDb } from "@/lib/utils";
 import { validateSchema, postValidationSchema } from "@/lib/validator";
 import Post from "@/models/Post";
 import formidable from "formidable";
@@ -21,8 +21,7 @@ export default async function handler(
     // case "POST":
     //   return uploadNewImage(req, res);
     case "GET":
-      await dbConnect();
-      return res.status(200).json({ message: "success" });
+      return readPosts(req, res);
     case "POST":
       return createNewPost(req, res);
     default:
@@ -75,4 +74,14 @@ async function createNewPost(req: NextApiRequest, res: NextApiResponse<any>) {
 
   await newPost.save();
   res.json({ post: newPost });
+}
+
+async function readPosts(req: NextApiRequest, res: NextApiResponse<any>) {
+  try {
+    const { limit, pageNo } = req.query as { limit: string; pageNo: string };
+    const posts = await readPostsFromDb(parseInt(limit), parseInt(pageNo));
+    res.json({ posts: formatPosts(posts) });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
 }

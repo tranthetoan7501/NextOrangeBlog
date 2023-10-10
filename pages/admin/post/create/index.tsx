@@ -24,7 +24,7 @@ export default function CreatePost() {
     setCreating(false);
   };
   return (
-    <div>
+    <div className='sm:px-36'>
       <AppHeader title='New Post' />
       <Editor onSubmit={handleSubmit} busy={creating} />
     </div>

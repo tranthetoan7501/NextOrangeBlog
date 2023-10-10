@@ -27,7 +27,7 @@ export default function Update({ post }: Props) {
     setUpdating(false);
   };
   return (
-    <div>
+    <div className='sm:px-36'>
       <AppHeader title='Update Post' />
       <Editor
         onSubmit={handleSubmit}
