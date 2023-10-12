@@ -35,7 +35,7 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
             </Typography>
           </CardHeader>
           <Image
-            className='absolute pl-5 right-24 sm:pl-0 sm:right-28 bottom-96'
+            className='absolute pl-5 right-20 sm:pl-0 sm:right-28 bottom-96'
             src='/Figure.png'
             alt='penguin'
             width={150}
