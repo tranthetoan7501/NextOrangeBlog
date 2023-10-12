@@ -97,7 +97,8 @@ export function PostCard({
           <></>
         ) : (
           <Button variant='outlined' className='text-red-800 text-xl w-16'>
-            <SolidHeartIcon />
+            <HeartIcon />
+            {/* <SolidHeartIcon /> */}
           </Button>
         )}
       </CardFooter>

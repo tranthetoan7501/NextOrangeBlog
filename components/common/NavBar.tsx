@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createElement, use, useState } from "react";
 import Image from "next/image";
 import {
   Navbar,
@@ -26,6 +26,7 @@ import {
   RocketLaunchIcon,
   Bars2Icon,
 } from "@heroicons/react/24/outline";
+import SignInDialog from "./SignInDialog";
 
 // profile menu component
 const profileMenuItems = [
@@ -45,16 +46,20 @@ const profileMenuItems = [
     label: "Help",
     icon: LifebuoyIcon,
   },
-  {
-    label: "Sign Out",
-    icon: PowerIcon,
-  },
+  // {
+  //   label: "Sign In",
+  //   icon: PowerIcon,
+  //   action: () => {},
+  // },
 ];
 
 function ProfileMenu() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
+  const [showDialog, setShowDialog] = useState(false);
+  const toggleShowDialog = () => {
+    setShowDialog((cur) => !cur);
+  };
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement='bottom-end'>
@@ -86,28 +91,45 @@ function ProfileMenu() {
             <MenuItem
               key={label}
               onClick={closeMenu}
-              className={`flex items-center gap-2 rounded ${
-                isLastItem
-                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                  : ""
-              }`}
+              className='flex items-center gap-2 rounded'
             >
-              {React.createElement(icon, {
-                className: `h-4 w-4 ${isLastItem ? "text-red-500" : ""}`,
+              {createElement(icon, {
+                className: "h-4 w-4",
                 strokeWidth: 2,
               })}
               <Typography
                 as='span'
                 variant='small'
                 className='font-normal'
-                color={isLastItem ? "red" : "inherit"}
+                color='inherit'
               >
                 {label}
               </Typography>
             </MenuItem>
           );
         })}
+        <>
+          <MenuItem
+            key='Sign In'
+            onClick={toggleShowDialog}
+            className='flex items-center gap-2 rounded'
+          >
+            {createElement(PowerIcon, {
+              className: "h-4 w-4",
+              strokeWidth: 2,
+            })}
+            <Typography
+              as='span'
+              variant='small'
+              className='font-normal'
+              color='inherit'
+            >
+              Sign In
+            </Typography>
+          </MenuItem>
+        </>
       </MenuList>
+      <SignInDialog open={showDialog} handler={toggleShowDialog} />
     </Menu>
   );
 }

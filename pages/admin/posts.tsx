@@ -10,7 +10,7 @@ type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 export default function Admin({ posts }: Props) {
   const [postsToRender, setPostsToRender] = useState(posts);
   const [hasMorePosts, setHasMorePosts] = useState(true);
-  const isAdmin = false;
+  const isAdmin = true;
   const fetchMorePosts = async () => {
     try {
       pageNo++;
@@ -34,7 +34,7 @@ export default function Admin({ posts }: Props) {
         next={fetchMorePosts}
         dataLength={postsToRender.length}
         posts={postsToRender}
-        showControls
+        showControls={isAdmin}
       />
     </div>
   );
