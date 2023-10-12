@@ -1,6 +1,3 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import { Button, Carousel, Typography } from "@material-tailwind/react";
 import { PostDetail } from "@/utils/type";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { formatPosts, readPostsFromDb } from "@/lib/utils";
@@ -38,7 +35,7 @@ export default function Home({ posts }: Props) {
         next={fetchMorePosts}
         dataLength={postsToRender.length}
         posts={postsToRender}
-        showControls
+        showControls={isAdmin}
       />
     </div>
   );

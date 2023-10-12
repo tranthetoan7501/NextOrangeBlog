@@ -10,7 +10,6 @@ import {
   PlusIcon,
   HomeIcon,
   CogIcon,
-  Square3Stack3DIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -25,12 +24,14 @@ export function MySpeedDial() {
           </IconButton>
         </SpeedDialHandler>
         <SpeedDialContent>
-          <SpeedDialAction className='h-16 w-16'>
-            <HomeIcon className='h-5 w-5' />
-            <Typography color='blue-gray' className='text-xs font-normal'>
-              Home
-            </Typography>
-          </SpeedDialAction>
+          <Link href='/admin/posts'>
+            <SpeedDialAction className='h-16 w-16'>
+              <HomeIcon className='h-5 w-5' />
+              <Typography color='blue-gray' className='text-xs font-normal'>
+                Home
+              </Typography>
+            </SpeedDialAction>
+          </Link>
           <SpeedDialAction className='h-16 w-16'>
             <CogIcon className='h-5 w-5' />
             <Typography color='blue-gray' className='text-xs font-normal'>

@@ -32,7 +32,7 @@ const InfiniteScrollPosts: FC<Props> = ({
       next={next}
       dataLength={dataLength}
       loader={loader || defaultLoader}
-      className='grid grid-cols-1 xl:grid-cols-2 sm:px-5 2xl:grid-cols-3  gap-12 top-3 place-items-center bg-transparent'
+      className='grid grid-cols-1 xl:grid-cols-2 sm:px-7 2xl:grid-cols-3 pb-10  gap-12 top-3 place-items-center bg-transparent'
     >
       {posts.map((post) => (
         <PostCard key={post.slug} post={post} controls={showControls} />

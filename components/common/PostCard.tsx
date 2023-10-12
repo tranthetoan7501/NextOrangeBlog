@@ -5,11 +5,14 @@ import {
   CardBody,
   CardFooter,
   Typography,
+  IconButton,
   Button,
 } from "@material-tailwind/react";
 import Image from "next/image";
 import dateformat from "dateformat";
 import Link from "next/link";
+import { HeartIcon } from "@heroicons/react/24/outline";
+import { HeartIcon as SolidHeartIcon } from "@heroicons/react/24/solid";
 
 interface Props {
   post: PostDetail;
@@ -68,7 +71,9 @@ export function PostCard({
         </CardBody>
       </Link>
       <CardFooter className='pt-0 flex items-center justify-between'>
-        {controls && busy ? (
+        {!controls ? (
+          <></>
+        ) : busy ? (
           <span className='animate-pulse'>Removing</span>
         ) : (
           <div className='flex items-center justify-between'>
@@ -88,6 +93,13 @@ export function PostCard({
         <Typography className='font-normal font-roboto text-lg'>
           {dateformat(createdAt, "d-mmm-yyyy")}
         </Typography>
+        {controls ? (
+          <></>
+        ) : (
+          <Button variant='outlined' className='text-red-800 text-xl w-16'>
+            <SolidHeartIcon />
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );
