@@ -182,7 +182,7 @@ export function NavBar() {
   return (
     <Navbar className='mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6'>
       <div className='relative mx-auto flex items-center text-blue-gray-900'>
-        <Image src='/favicon.ico' alt='logo' width={30} height={30} />
+        <Image src='/penguin.svg' alt='logo' width={30} height={30} />
         <Typography
           as='a'
           href='/'
