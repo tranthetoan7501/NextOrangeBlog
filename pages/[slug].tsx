@@ -20,7 +20,8 @@ export default function SinglePost({ post }: Props) {
             <Image
               src={thumbnail}
               alt={title}
-              layout='fill'
+              fill
+              style={{ objectFit: "cover" }}
               className='rounded-xl'
             />
           </div>
