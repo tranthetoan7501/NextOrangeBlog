@@ -182,7 +182,13 @@ export function NavBar() {
   return (
     <Navbar className='mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6'>
       <div className='relative mx-auto flex items-center text-blue-gray-900'>
-        <Image src='/penguin.svg' alt='logo' width={30} height={30} />
+        <Avatar
+          variant='circular'
+          size='sm'
+          alt='tania andrew'
+          className='border '
+          src='./penguin.png'
+        />
         <Typography
           as='a'
           href='/'
