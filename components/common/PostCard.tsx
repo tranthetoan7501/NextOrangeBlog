@@ -30,7 +30,7 @@ export function PostCard({
   const { title, slug, meta, createdAt, tags, thumbnail } = post;
   return (
     <Card className='mt-6 w-92 shadow-xl   shadow-gray-300'>
-      <Link href={"/admin/post/update/" + slug}>
+      <Link href={"/" + slug}>
         <CardHeader
           color='blue-gray'
           className='relative h-56 shadow-xl shadow-gray-600'
