@@ -64,8 +64,9 @@ export default function Editor({
       Youtube.configure({
         width: 840,
         height: 472.5,
+        allowFullscreen: true,
         HTMLAttributes: {
-          class: "mx-auto rounded",
+          class: "mx-auto",
         },
       }),
       TipTapImage.configure({

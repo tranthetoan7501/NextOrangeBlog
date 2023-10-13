@@ -26,7 +26,7 @@ export default function SinglePost({ post }: Props) {
           </div>
         ) : null}
 
-        <h1 className='text-6xl font-semibold text-primary-dark dark:text-primary pt-5'>
+        <h1 className='text-4xl lg:text-6xl font-semibold text-primary-dark dark:text-primary pt-5'>
           {title}
         </h1>
 
@@ -47,7 +47,7 @@ export default function SinglePost({ post }: Props) {
           </span>
         </div>
 
-        <div className='prose prose-lg dark:prose-invert max-w-full mx-auto'>
+        <div className='prose prose-lg dark:prose-invert max-w-5xl mx-auto'>
           {parse(content)}
         </div>
       </div>
@@ -108,6 +108,7 @@ export const getStaticProps: GetStaticProps<
           thumbnail: thumbnail?.url || "",
           createdAt: createdAt.toString(),
         },
+        revalidate: 600,
       },
     };
   } catch (error) {

@@ -30,6 +30,9 @@
   height: 0;
   pointer-events: none;
 }
+.width-fixed {
+  width: 100px;
+}
 
 /* body {
   color: rgb(var(--foreground-rgb));
