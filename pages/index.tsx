@@ -29,7 +29,7 @@ export default function Home({ posts }: Props) {
   };
   return (
     <div>
-      <AppHeader title='Home' />
+      <AppHeader />
       <InfiniteScrollPosts
         hasMore={hasMorePosts}
         next={fetchMorePosts}

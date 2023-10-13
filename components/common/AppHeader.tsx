@@ -3,7 +3,7 @@ interface Props {
   title?: string;
   desc?: string;
 }
-export const APP_NAME = "OrangeBlog";
+export const APP_NAME = "PenguinBlog";
 export default function AppHeader({ title, desc }: Props) {
   return (
     <Head>
