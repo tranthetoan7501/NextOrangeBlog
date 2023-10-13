@@ -108,7 +108,7 @@ export const getStaticProps: GetStaticProps<
           thumbnail: thumbnail?.url || "",
           createdAt: createdAt.toString(),
         },
-        revalidate: 600,
+        revalidate: 60,
       },
     };
   } catch (error) {
