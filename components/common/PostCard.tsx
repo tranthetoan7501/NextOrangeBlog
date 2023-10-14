@@ -45,8 +45,8 @@ export function PostCard({
             style={{ objectFit: "cover" }}
           />
         </CardHeader>
-        <CardBody className='h-56 '>
-          <div className='h-44'>
+        <CardBody className='h-56 sm:h-44  xl:h-56'>
+          <div className='h-44 sm:h-32  xl:h-44'>
             <Typography
               variant='h5'
               color='blue-gray'

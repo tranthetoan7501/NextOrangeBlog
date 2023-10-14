@@ -31,7 +31,20 @@
   pointer-events: none;
 }
 .width-fixed {
-  width: 100px;
+  width: 100px !important;
+}
+iframe {
+  max-width: 100% !important; /* Đặt chiều rộng tối đa là 100% của phần tử cha */
+  /* Đảm bảo chiều cao tự động điều chỉnh theo tỷ lệ khung hình */
+  display: block !important; /* Đặt dạng hiển thị thành block để loại bỏ khoảng trắng phía dưới */
+  /* Đặt margin thành 0 để loại bỏ khoảng trắng xung quanh */
+  border: none !important; /* Loại bỏ đường viền */
+}
+
+@media (max-width: 768px) {
+  iframe {
+    height: 300px !important; /* Chiều cao cho điện thoại di động */
+  }
 }
 
 /* body {
