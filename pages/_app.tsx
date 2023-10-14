@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <main className={roboto.className}>
       <NavBar />
 
-      <div className='lg:px-20 py-10'>
+      <div className='lg:px-20 py-3 lg:py-6 '>
         <Component {...pageProps} />
       </div>
       <MySpeedDial />
