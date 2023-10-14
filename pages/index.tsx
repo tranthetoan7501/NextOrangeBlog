@@ -28,7 +28,7 @@ export default function Home({ posts }: Props) {
     }
   };
   return (
-    <div>
+    <div className='pt-5'>
       <AppHeader />
       <InfiniteScrollPosts
         hasMore={hasMorePosts}

@@ -66,7 +66,7 @@ export default function Editor({
         height: 472.5,
         allowFullscreen: true,
         HTMLAttributes: {
-          class: "mx-auto width-fixed",
+          class: "mx-auto rounded-lg",
         },
       }),
       TipTapImage.configure({
