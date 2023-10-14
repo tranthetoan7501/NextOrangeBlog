@@ -13,7 +13,7 @@ export default function SinglePost({ post }: Props) {
   const { title, content, tags, meta, slug, thumbnail, createdAt } = post;
   return (
     <div>
-      <AppHeader title={title} desc={meta} />
+      <AppHeader title={title} desc={meta} thumbnail={thumbnail} />
       <div className='pb-20 px-2 sm:px-10 xl:px-52 lg:px-32'>
         {thumbnail ? (
           <div className='relative aspect-video'>
