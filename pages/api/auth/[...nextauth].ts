@@ -49,7 +49,29 @@ const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) token.role = (user as any).role;
+      return token;
+    },
+    async session({ session }) {
+      await dbConnect();
+      const user = await User.findOne({ email: session.user?.email });
+      if (user)
+        session.user = {
+          id: user._id.toString(),
+          name: user.name,
+          email: user.email,
+          avatar: user.avatar,
+          role: user.role,
+        } as any;
+      return session;
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    error: "/404",
+  },
 };
 
 export default NextAuth(authOptions);

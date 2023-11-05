@@ -29,11 +29,11 @@ export function PostCard({
 }: Props) {
   const { title, slug, meta, createdAt, tags, thumbnail } = post;
   return (
-    <Card className='mt-6 w-92 shadow-xl   shadow-gray-300'>
+    <Card className='mt-6 w-92 shadow-xl shadow-gray-300 dark:bg-black dark:border-cyan-600 dark:shadow-lg dark:shadow-purple-300'>
       <Link href={"/" + slug}>
         <CardHeader
           color='blue-gray'
-          className='relative h-56 shadow-xl shadow-gray-600'
+          className='relative h-56 shadow-xl shadow-gray-600 dark:shadow-lg dark:shadow-blue-800'
         >
           <Image
             src={
@@ -46,24 +46,27 @@ export function PostCard({
           />
         </CardHeader>
         <CardBody className='h-56 sm:h-44  xl:h-56'>
-          <div className='h-44 sm:h-32  xl:h-44'>
+          <div className='h-44 sm:h-32  xl:h-44 '>
             <Typography
               variant='h5'
               color='blue-gray'
-              className='mb-2 font-roboto'
+              className='mb-2 font-roboto dark:text-cyan-500'
             >
               {title}
             </Typography>
-            <Typography className='font-roboto'>
+            <Typography className='font-roboto dark:text-purple-400'>
               {meta + " " ||
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."}
               ...
             </Typography>
           </div>
 
-          <div className='flex items-center space-x-1 text-green-700 font-bold'>
+          <div className='flex items-center space-x-1 text-green-700 font-bold dark:text-pink-400'>
             {tags.map((t, index) => (
-              <span className='hover:text-orange-600' key={t + index}>
+              <span
+                className='hover:text-orange-600 dark:hover:text-blue-500'
+                key={t + index}
+              >
                 #{t}
               </span>
             ))}
@@ -90,13 +93,16 @@ export function PostCard({
             </p>
           </div>
         )}
-        <Typography className='font-normal font-roboto text-lg'>
+        <Typography className='font-normal font-roboto text-lg dark:text-gray-300'>
           {dateformat(createdAt, "d-mmm-yyyy")}
         </Typography>
         {controls ? (
           <></>
         ) : (
-          <Button variant='outlined' className='text-red-800 text-xl w-16'>
+          <Button
+            variant='outlined'
+            className='text-red-800 text-xl w-16 dark:border-cyan-600'
+          >
             <HeartIcon />
             {/* <SolidHeartIcon /> */}
           </Button>

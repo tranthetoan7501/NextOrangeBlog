@@ -35,7 +35,7 @@ export default function SinglePost({ post }: Props) {
           <div className='flex text-blue-700'>
             {tags.map((t, index) => (
               <span
-                className='text-blue-900 hover:text-blue-700 font-bold'
+                className='text-blue-900 hover:text-blue-700 font-bold dark:text-cyan-500 cursor-pointer dark:hover:text-pink-300'
                 key={t + index}
               >
                 #{t} &nbsp;
@@ -43,7 +43,7 @@ export default function SinglePost({ post }: Props) {
             ))}
           </div>
 
-          <span className='font-normal font-roboto text-lg'>
+          <span className='font-normal font-roboto text-lg dark:text-pink-400'>
             {dateFormat(createdAt, "d-mmm-yyyy")}
           </span>
         </div>

@@ -1,4 +1,5 @@
 import React, { createElement, use, useState } from "react";
+import useDarkMode from "@/hooks/useDarkMode";
 import { useSession, signOut } from "next-auth/react";
 import {
   Navbar,
@@ -20,27 +21,34 @@ import {
   LifebuoyIcon,
   PowerIcon,
   Bars2Icon,
+  LightBulbIcon,
 } from "@heroicons/react/24/outline";
 import SignInDialog from "./SignInDialog";
+import { UserProfile } from "@/utils/type";
 
 // profile menu component
 const profileMenuItems = [
   {
     label: "My Profile",
     icon: UserCircleIcon,
+    onClick: () => {},
   },
   {
     label: "Edit Profile",
     icon: Cog6ToothIcon,
+    onClick: () => {},
   },
   {
     label: "Inbox",
     icon: InboxArrowDownIcon,
+    onClick: () => {},
   },
   {
     label: "Help",
     icon: LifebuoyIcon,
+    onClick: () => {},
   },
+
   // {
   //   label: "Sign In",
   //   icon: PowerIcon,
@@ -54,6 +62,8 @@ function ProfileMenu() {
   const [showDialog, setShowDialog] = useState(false);
   const { data, status } = useSession();
   const isAuth = status === "authenticated";
+  const userProfile = data?.user as UserProfile;
+  const { toggleTheme } = useDarkMode();
   const toggleShowDialog = () => {
     setShowDialog((cur) => !cur);
   };
@@ -71,7 +81,10 @@ function ProfileMenu() {
             size='sm'
             alt='tania andrew'
             className='border border-gray-900 p-0.5'
-            src='https://res.cloudinary.com/dcojxsjnw/image/upload/v1677254126/4e984a4f23b46ed4ec342a7614b1364a2b2f7e4d.jpg'
+            src={
+              userProfile?.avatar ||
+              "https://res.cloudinary.com/dcojxsjnw/image/upload/v1677254126/4e984a4f23b46ed4ec342a7614b1364a2b2f7e4d.jpg"
+            }
           />
           <ChevronDownIcon
             strokeWidth={2.5}
@@ -105,7 +118,24 @@ function ProfileMenu() {
             </MenuItem>
           );
         })}
-
+        <MenuItem
+          key='Switch Theme'
+          onClick={toggleTheme}
+          className='flex items-center gap-2 rounded'
+        >
+          {createElement(LightBulbIcon, {
+            className: "h-4 w-4",
+            strokeWidth: 2,
+          })}
+          <Typography
+            as='span'
+            variant='small'
+            className='font-normal'
+            color='inherit'
+          >
+            Switch Theme
+          </Typography>
+        </MenuItem>
         {!isAuth ? (
           <>
             <MenuItem
@@ -177,7 +207,7 @@ function NavList() {
           color='blue-gray'
           className='font-normal'
         >
-          <MenuItem className='flex items-center gap-2 lg:rounded-full'>
+          <MenuItem className='flex items-center gap-2 lg:rounded-full dark:text-light-blue-400'>
             {label}
           </MenuItem>
         </Typography>
@@ -199,13 +229,13 @@ export function NavBar() {
   }, []);
 
   return (
-    <Navbar className='mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6'>
-      <div className='relative mx-auto flex items-center text-blue-gray-900'>
+    <Navbar className='mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6 dark:bg-black dark:border-purple-700 dark:shadow-lg dark:shadow-purple-300'>
+      <div className='relative mx-auto flex items-center text-blue-gray-900 dark:text-pink-600 dark:font-bold'>
         <Avatar
           variant='circular'
           size='sm'
           alt='tania andrew'
-          className='border '
+          className='border dark:border-purple-700'
           src='./penguin.png'
         />
         <Typography
