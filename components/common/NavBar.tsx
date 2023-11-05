@@ -94,14 +94,14 @@ function ProfileMenu() {
           />
         </Button>
       </MenuHandler>
-      <MenuList className='p-1'>
+      <MenuList className='p-1 dark:bg-black dark:border-blue-700'>
         {profileMenuItems.map(({ label, icon }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
           return (
             <MenuItem
               key={label}
               onClick={closeMenu}
-              className='flex items-center gap-2 rounded'
+              className='flex items-center gap-2 rounded dark:text-pink-400 dark:hover:bg-purple-900'
             >
               {createElement(icon, {
                 className: "h-4 w-4",
@@ -110,7 +110,7 @@ function ProfileMenu() {
               <Typography
                 as='span'
                 variant='small'
-                className='font-normal'
+                className='font-normal dark:text-cyan-400'
                 color='inherit'
               >
                 {label}
@@ -121,7 +121,7 @@ function ProfileMenu() {
         <MenuItem
           key='Switch Theme'
           onClick={toggleTheme}
-          className='flex items-center gap-2 rounded'
+          className='flex items-center gap-2 rounded dark:text-pink-400 dark:hover:bg-purple-900'
         >
           {createElement(LightBulbIcon, {
             className: "h-4 w-4",
@@ -130,7 +130,7 @@ function ProfileMenu() {
           <Typography
             as='span'
             variant='small'
-            className='font-normal'
+            className='font-normal dark:text-cyan-400'
             color='inherit'
           >
             Switch Theme
@@ -141,7 +141,7 @@ function ProfileMenu() {
             <MenuItem
               key='Sign In'
               onClick={toggleShowDialog}
-              className='flex items-center gap-2 rounded'
+              className='flex items-center gap-2 rounded dark:text-pink-400 dark:hover:bg-purple-900'
             >
               {createElement(PowerIcon, {
                 className: "h-4 w-4",
@@ -150,7 +150,7 @@ function ProfileMenu() {
               <Typography
                 as='span'
                 variant='small'
-                className='font-normal'
+                className='font-normal dark:text-cyan-400'
                 color='inherit'
               >
                 Sign In
@@ -160,7 +160,7 @@ function ProfileMenu() {
         ) : (
           <MenuItem
             key='Sign out'
-            className='flex items-center gap-2 rounded'
+            className='flex items-center gap-2 rounded dark:text-pink-400 dark:hover:bg-purple-900'
             onClick={async () => await signOut()}
           >
             {createElement(PowerIcon, {
@@ -170,7 +170,7 @@ function ProfileMenu() {
             <Typography
               as='span'
               variant='small'
-              className='font-normal'
+              className='font-normal dark:text-cyan-400'
               color='inherit'
             >
               Sign out
