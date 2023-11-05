@@ -5,7 +5,7 @@ export interface UserModelSchema {
   name: string;
   email: string;
   role: "user" | "admin";
-  provider: "github";
+  provider: "github" | "google" | "facebook";
   avatar?: string;
 }
 
@@ -27,7 +27,7 @@ const UserSchema = new Schema<UserModelSchema>(
     },
     provider: {
       type: String,
-      enum: ["github"],
+      enum: ["github", "google", "facebook"],
     },
     avatar: {
       type: String,
