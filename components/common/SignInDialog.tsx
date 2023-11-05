@@ -66,11 +66,11 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
               </span>
             </div>
 
-            <div className='xl:mx-7 mx-7 flex justify-between'>
+            <div className='xl:mx-7 mx-7 flex justify-between xl:flex items-center'>
               <Button
                 onClick={async () => await signIn("github")}
                 variant='gradient'
-                className='mb-2 inline-block px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg'
+                className='mb-2 mx-1 inline-block px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -83,28 +83,11 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
               </Button>
 
               <Button
-                onClick={async () => await signIn("facebook")}
-                type='button'
-                data-te-ripple-init
-                data-te-ripple-color='light'
-                className='bg-blue-700 mb-2 inline-block rounded px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg'
-              >
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='h-4 w-4'
-                  fill='currentColor'
-                  viewBox='0 0 24 24'
-                >
-                  <path d='M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z' />
-                </svg>
-              </Button>
-
-              <Button
                 onClick={async () => await signIn("google")}
                 type='button'
                 data-te-ripple-init
                 data-te-ripple-color='light'
-                className='bg-red-600 mb-2 inline-block rounded px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg'
+                className='bg-red-600 mx-1 mb-2 inline-block rounded px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -117,6 +100,22 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
                     fill-rule='evenodd'
                     clip-rule='evenodd'
                   />
+                </svg>
+              </Button>
+              <Button
+                onClick={async () => await signIn("facebook")}
+                type='button'
+                data-te-ripple-init
+                data-te-ripple-color='light'
+                className='bg-blue-700 mx-1 mb-2 inline-block rounded px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg'
+              >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='h-4 w-4'
+                  fill='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path d='M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z' />
                 </svg>
               </Button>
             </div>
