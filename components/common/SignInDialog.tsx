@@ -66,11 +66,11 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
               </span>
             </div>
 
-            <div className='xl:mx-7 mx-7 flex justify-between xl:flex items-center'>
+            <div className='sm:mx-7 flex justify-between'>
               <Button
                 onClick={async () => await signIn("github")}
                 variant='gradient'
-                className='mb-2 mx-1 inline-block px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg'
+                className='mb-2 mx- inline-block px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
