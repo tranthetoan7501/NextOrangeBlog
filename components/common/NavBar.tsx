@@ -1,5 +1,5 @@
 import React, { createElement, use, useState } from "react";
-import Image from "next/image";
+import { useSession, signOut } from "next-auth/react";
 import {
   Navbar,
   Collapse,
@@ -10,20 +10,15 @@ import {
   MenuList,
   MenuItem,
   Avatar,
-  Card,
   IconButton,
 } from "@material-tailwind/react";
 import {
-  CubeTransparentIcon,
   UserCircleIcon,
-  CodeBracketSquareIcon,
-  Square3Stack3DIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
   InboxArrowDownIcon,
   LifebuoyIcon,
   PowerIcon,
-  RocketLaunchIcon,
   Bars2Icon,
 } from "@heroicons/react/24/outline";
 import SignInDialog from "./SignInDialog";
@@ -57,6 +52,8 @@ function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
   const [showDialog, setShowDialog] = useState(false);
+  const { data, status } = useSession();
+  const isAuth = status === "authenticated";
   const toggleShowDialog = () => {
     setShowDialog((cur) => !cur);
   };
@@ -108,11 +105,33 @@ function ProfileMenu() {
             </MenuItem>
           );
         })}
-        <>
+
+        {!isAuth ? (
+          <>
+            <MenuItem
+              key='Sign In'
+              onClick={toggleShowDialog}
+              className='flex items-center gap-2 rounded'
+            >
+              {createElement(PowerIcon, {
+                className: "h-4 w-4",
+                strokeWidth: 2,
+              })}
+              <Typography
+                as='span'
+                variant='small'
+                className='font-normal'
+                color='inherit'
+              >
+                Sign In
+              </Typography>
+            </MenuItem>
+          </>
+        ) : (
           <MenuItem
-            key='Sign In'
-            onClick={toggleShowDialog}
+            key='Sign out'
             className='flex items-center gap-2 rounded'
+            onClick={async () => await signOut()}
           >
             {createElement(PowerIcon, {
               className: "h-4 w-4",
@@ -124,10 +143,10 @@ function ProfileMenu() {
               className='font-normal'
               color='inherit'
             >
-              Sign In
+              Sign out
             </Typography>
           </MenuItem>
-        </>
+        )}
       </MenuList>
       <SignInDialog open={showDialog} handler={toggleShowDialog} />
     </Menu>

@@ -9,6 +9,7 @@ import {
   Input,
   Typography,
 } from "@material-tailwind/react";
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 
 interface Prop {
@@ -67,6 +68,7 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
 
             <div className='xl:mx-7 mx-7 flex justify-between'>
               <Button
+                onClick={async () => await signIn("github")}
                 variant='gradient'
                 className='mb-2 inline-block px-6 py-2.5 text-xs font-medium uppercase leading-normal text-white shadow-md transition duration-150 ease-in-out hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg'
               >
@@ -81,6 +83,7 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
               </Button>
 
               <Button
+                onClick={async () => await signIn("facebook")}
                 type='button'
                 data-te-ripple-init
                 data-te-ripple-color='light'
@@ -97,6 +100,7 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
               </Button>
 
               <Button
+                onClick={async () => await signIn("google")}
                 type='button'
                 data-te-ripple-init
                 data-te-ripple-color='light'
