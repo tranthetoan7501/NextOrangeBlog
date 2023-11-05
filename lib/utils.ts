@@ -3,6 +3,8 @@ import { NextApiRequest } from "next";
 import Post, { PostModelSchema } from "../models/Post";
 import { PostDetail } from "@/utils/type";
 import dbConnect from "./dbConnect";
+import { profile } from "console";
+import User from "@/models/User";
 
 interface FormidablePromise<T> {
   files: formidable.Files;
@@ -47,4 +49,27 @@ export const formatPosts = (posts: PostModelSchema[]): PostDetail[] => {
     meta: post.meta,
     tags: post.tags,
   }));
+};
+
+export const handleUserOAuth = async (profile: any) => {
+  await dbConnect();
+  const oldUser = await User.findOne({ email: profile.email });
+  const userProfile = {
+    email: profile.email,
+    name: profile.name || profile.login,
+    avatar: profile.avatar_url,
+    role: "user",
+  };
+
+  if (!oldUser) {
+    const newUser = new User({
+      ...userProfile,
+      provider: "github",
+    });
+
+    await newUser.save();
+  } else {
+    userProfile.role = oldUser.role;
+  }
+  return { id: profile.id, ...userProfile };
 };
