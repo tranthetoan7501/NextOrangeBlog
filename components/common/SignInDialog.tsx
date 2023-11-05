@@ -33,7 +33,7 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
           >
             {" "}
             <Image
-              className='ml-6'
+              className='sm:ml-6'
               src='/Figure.png'
               alt='penguin'
               width={110}
