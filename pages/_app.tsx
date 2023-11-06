@@ -4,6 +4,8 @@ import { MySpeedDial } from "@/components/common/SpeedDial";
 import type { AppProps } from "next/app";
 import { Yrsa } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const roboto = Yrsa({
   weight: "400",
@@ -21,6 +23,7 @@ export default function App({
         <div className='lg:px-20 py-3 lg:py-6 '>
           <Component {...pageProps} />
         </div>
+        <ToastContainer />
         <MySpeedDial />
       </main>
     </SessionProvider>

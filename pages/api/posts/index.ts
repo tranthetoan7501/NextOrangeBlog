@@ -46,7 +46,7 @@ async function createNewPost(req: NextApiRequest, res: NextApiResponse<any>) {
     slug,
     tags,
   });
-  if (error) return res.status(400).json({ message: error });
+  if (error) return res.status(400).json({ error: error });
   await dbConnect();
 
   const alreadyExits = await Post.findOne({ slug });
@@ -73,7 +73,7 @@ async function createNewPost(req: NextApiRequest, res: NextApiResponse<any>) {
   }
 
   await newPost.save();
-  res.json({ post: newPost });
+  res.json({ post: newPost, isSuccess: true });
 }
 
 async function readPosts(req: NextApiRequest, res: NextApiResponse<any>) {

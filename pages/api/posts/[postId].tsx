@@ -51,7 +51,7 @@ async function updatePost(req: NextApiRequest, res: NextApiResponse<any>) {
     slug,
     tags,
   });
-  if (error) return res.status(400).json({ message: error });
+  if (error) return res.status(400).json({ error: error });
   post.title = title;
   post.content = content;
   post.meta = meta;
@@ -72,5 +72,5 @@ async function updatePost(req: NextApiRequest, res: NextApiResponse<any>) {
     post.thumbnail = { url, public_id };
   }
   await post.save();
-  res.json({ post });
+  res.json({ post, isSuccess: true });
 }

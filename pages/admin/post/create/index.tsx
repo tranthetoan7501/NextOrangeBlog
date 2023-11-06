@@ -4,6 +4,7 @@ import { generateFormData } from "@/utils/helper";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function CreatePost() {
   const [creating, setCreating] = useState(false);
@@ -16,7 +17,13 @@ export default function CreatePost() {
 
       // submit our post
       const { data } = await axios.post("/api/posts", formData);
-      console.log(data);
+      if (data.isSuccess) {
+        toast("Update successfully!", {
+          className: "dark:bg-gray-800 dark:text-white",
+        });
+      } else {
+        toast("Update fail!");
+      }
       //router.push("/admin/posts/update/" + data.post.slug);
     } catch (error: any) {
       console.log(error.response.data);

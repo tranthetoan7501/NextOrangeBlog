@@ -6,6 +6,7 @@ import { generateFormData } from "@/utils/helper";
 import axios from "axios";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface PostResponse extends FinalPost {
   id: string;
@@ -21,9 +22,13 @@ export default function Update({ post }: Props) {
       // submit our post
       await connection?.disconnect();
       const { data } = await axios.patch("/api/posts/" + post.id, formData);
-    } catch (error: any) {
-      console.log(error.response.data);
-    }
+
+      if (data.isSuccess) {
+        toast("Update successfully!");
+      } else {
+        toast("Update fail!");
+      }
+    } catch (error: any) {}
     setUpdating(false);
   };
   return (
