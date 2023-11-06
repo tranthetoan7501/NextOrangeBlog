@@ -3,7 +3,6 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { formatPosts, readPostsFromDb } from "@/lib/utils";
 import { useState } from "react";
 import axios from "axios";
-import { PostCard } from "@/components/common/PostCard";
 import AppHeader from "@/components/common/AppHeader";
 import InfiniteScrollPosts from "@/components/common/InfiniteScrollPosts";
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;

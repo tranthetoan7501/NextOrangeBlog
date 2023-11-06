@@ -11,7 +11,8 @@ import useFormattedDate from "@/hooks/useFormateDate";
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function SinglePost({ post }: Props) {
-  const { title, content, tags, meta, thumbnail, createdAt } = post;
+  const title = "dsdsdsd";
+  const { content, tags, meta, thumbnail, createdAt } = post;
   const date = useFormattedDate(createdAt);
   return (
     <div>
