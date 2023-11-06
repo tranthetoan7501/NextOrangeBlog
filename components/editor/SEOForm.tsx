@@ -38,9 +38,8 @@ export default function SEOForm({ initialValue, title = "", onChange }: Props) {
       setValues({ ...initialValue, slug: slugify(initialValue.slug) });
     }
   }, [initialValue]);
-
   return (
-    <div className='hidden sm:block'>
+    <div className='hidden sm:block mb-96'>
       <h3 className='block font-sans text-xl font-semibold leading-tight tracking-normal antialiased mb-4'>
         SEO Section
       </h3>
