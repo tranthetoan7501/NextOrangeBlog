@@ -10,16 +10,16 @@ import dateFormat from "dateformat";
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function SinglePost({ post }: Props) {
-  const { title, content, tags, meta, slug, thumbnail, createdAt } = post;
+  const { title, content, tags, meta, thumbnail, createdAt } = post;
   return (
     <div>
-      <AppHeader title={title} desc={meta} thumbnail={thumbnail} />
+      <AppHeader title={title || ""} desc={meta} thumbnail={thumbnail} />
       <div className='pb-20 px-2 sm:px-10 xl:px-52 lg:px-32'>
         {thumbnail ? (
           <div className='relative aspect-video'>
             <Image
               src={thumbnail}
-              alt={title}
+              alt={title || ""}
               fill
               style={{ objectFit: "cover" }}
               className='rounded-xl'
@@ -28,7 +28,7 @@ export default function SinglePost({ post }: Props) {
         ) : null}
 
         <h1 className='text-4xl lg:text-6xl font-semibold text-primary-dark dark:text-primary pt-5 dark:text-blue-700'>
-          {title}
+          {title || ""}
         </h1>
 
         <div className='flex items-center justify-between pb-5 text-secondary-dark dark:text-secondary-light'>
