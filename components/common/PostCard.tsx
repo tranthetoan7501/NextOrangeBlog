@@ -12,8 +12,7 @@ import dateformat from "dateformat";
 import Link from "next/link";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as SolidHeartIcon } from "@heroicons/react/24/solid";
-import { useEffect, useState } from "react";
-import { NullExpression } from "mongoose";
+import useFormattedDate from "@/hooks/useFormateDate";
 
 interface Props {
   post: PostDetail;
@@ -29,10 +28,7 @@ export function PostCard({
   onDeleteClick,
 }: Props) {
   const { title, slug, meta, createdAt, tags, thumbnail } = post;
-  const [date, setDate] = useState<string | NullExpression>(null);
-  useEffect(() => {
-    setDate(dateformat(createdAt, "d-mmm-yyyy").toString());
-  }, []);
+  const date = useFormattedDate(createdAt);
   return (
     <Card className='mt-6 w-92 shadow-xl shadow-gray-300 dark:bg-black dark:border-cyan-600 dark:shadow-lg dark:shadow-purple-300'>
       <Link href={"/" + slug}>
@@ -98,6 +94,7 @@ export function PostCard({
             </p>
           </div>
         )}
+
         <Typography className='font-normal font-roboto text-lg dark:text-gray-300'>
           {date}
         </Typography>

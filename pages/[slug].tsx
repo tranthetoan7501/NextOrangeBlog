@@ -6,11 +6,13 @@ import parse from "html-react-parser";
 import AppHeader from "@/components/common/AppHeader";
 import Image from "next/image";
 import dateFormat from "dateformat";
+import useFormattedDate from "@/hooks/useFormateDate";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function SinglePost({ post }: Props) {
   const { title, content, tags, meta, thumbnail, createdAt } = post;
+  const date = useFormattedDate(createdAt);
   return (
     <div>
       <AppHeader title={title || ""} desc={meta} thumbnail={thumbnail} />
@@ -44,7 +46,7 @@ export default function SinglePost({ post }: Props) {
           </div>
 
           <span className='font-normal font-roboto text-lg dark:text-pink-400'>
-            {dateFormat(createdAt, "d-mmm-yyyy")}
+            {date}
           </span>
         </div>
 
