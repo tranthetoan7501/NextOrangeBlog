@@ -96,7 +96,6 @@ function ProfileMenu() {
       </MenuHandler>
       <MenuList className='p-1 dark:bg-black dark:border-blue-700'>
         {profileMenuItems.map(({ label, icon }, key) => {
-          const isLastItem = key === profileMenuItems.length - 1;
           return (
             <MenuItem
               key={label}

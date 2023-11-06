@@ -5,7 +5,6 @@ import {
   CardBody,
   CardFooter,
   Typography,
-  IconButton,
   Button,
 } from "@material-tailwind/react";
 import Image from "next/image";
@@ -13,6 +12,8 @@ import dateformat from "dateformat";
 import Link from "next/link";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { HeartIcon as SolidHeartIcon } from "@heroicons/react/24/solid";
+import { useEffect, useState } from "react";
+import { NullExpression } from "mongoose";
 
 interface Props {
   post: PostDetail;
@@ -28,6 +29,10 @@ export function PostCard({
   onDeleteClick,
 }: Props) {
   const { title, slug, meta, createdAt, tags, thumbnail } = post;
+  const [date, setDate] = useState<string | NullExpression>(null);
+  useEffect(() => {
+    setDate(dateformat(createdAt, "d-mmm-yyyy").toString());
+  }, []);
   return (
     <Card className='mt-6 w-92 shadow-xl shadow-gray-300 dark:bg-black dark:border-cyan-600 dark:shadow-lg dark:shadow-purple-300'>
       <Link href={"/" + slug}>
@@ -94,7 +99,7 @@ export function PostCard({
           </div>
         )}
         <Typography className='font-normal font-roboto text-lg dark:text-gray-300'>
-          {dateformat(createdAt, "d-mmm-yyyy")}
+          {date}
         </Typography>
         {controls ? (
           <></>

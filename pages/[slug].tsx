@@ -36,7 +36,7 @@ export default function SinglePost({ post }: Props) {
             {tags.map((t, index) => (
               <span
                 className='text-blue-900 hover:text-blue-700 font-bold dark:text-purple-300 cursor-pointer dark:hover:text-cyan-300'
-                key={t + index}
+                key={index}
               >
                 #{t} &nbsp;
               </span>
