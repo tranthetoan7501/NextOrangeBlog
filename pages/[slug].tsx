@@ -64,7 +64,7 @@ export default function SinglePost({ post }: Props) {
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     await dbConnect();
-    const posts = await post?.find().select("slug");
+    const posts = await Post.find().select("slug");
     const paths = posts.map(({ slug }) => ({ params: { slug } }));
     return {
       paths,
@@ -97,7 +97,7 @@ export const getStaticProps: GetStaticProps<
 > = async ({ params }) => {
   try {
     await dbConnect();
-    const post = await post?.findOne({ slug: params?.slug });
+    const post = await Post.findOne({ slug: params?.slug });
     if (!post) return { notFound: true };
 
     const { _id, title, content, meta, slug, tags, thumbnail, createdAt } =
