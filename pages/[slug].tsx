@@ -11,20 +11,20 @@ import useFormattedDate from "@/hooks/useFormateDate";
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function SinglePost({ post }: Props) {
-  const date = useFormattedDate(post.createdAt);
+  const date = useFormattedDate(post?.createdAt);
   return (
     <div>
       <AppHeader
-        title={post.title || ""}
-        desc={post.meta}
-        thumbnail={post.thumbnail}
+        title={post?.title || ""}
+        desc={post?.meta}
+        thumbnail={post?.thumbnail}
       />
       <div className='pb-20 px-2 sm:px-10 xl:px-52 lg:px-32'>
-        {post.thumbnail ? (
+        {post?.thumbnail ? (
           <div className='relative aspect-video'>
             <Image
-              src={post.thumbnail}
-              alt={post.title || ""}
+              src={post?.thumbnail}
+              alt={post?.title || ""}
               fill
               style={{ objectFit: "cover" }}
               className='rounded-xl'
@@ -33,12 +33,12 @@ export default function SinglePost({ post }: Props) {
         ) : null}
 
         <h1 className='text-4xl lg:text-6xl font-semibold text-primary-dark dark:text-primary pt-5 dark:text-blue-700'>
-          {post.title || ""}
+          {post?.title || ""}
         </h1>
 
         <div className='flex items-center justify-between pb-5 text-secondary-dark dark:text-secondary-light'>
           <div className='flex text-blue-700'>
-            {post.tags.map((t, index) => (
+            {post?.tags.map((t, index) => (
               <span
                 className='text-blue-900 hover:text-blue-700 font-bold dark:text-purple-300 cursor-pointer dark:hover:text-cyan-300'
                 key={index}
@@ -54,7 +54,7 @@ export default function SinglePost({ post }: Props) {
         </div>
 
         <div className='prose prose-lg dark:prose-invert max-w-5xl mx-auto'>
-          {parse(post.content)}
+          {parse(post?.content)}
         </div>
       </div>
     </div>
@@ -64,7 +64,7 @@ export default function SinglePost({ post }: Props) {
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     await dbConnect();
-    const posts = await Post.find().select("slug");
+    const posts = await post?.find().select("slug");
     const paths = posts.map(({ slug }) => ({ params: { slug } }));
     return {
       paths,
@@ -97,7 +97,7 @@ export const getStaticProps: GetStaticProps<
 > = async ({ params }) => {
   try {
     await dbConnect();
-    const post = await Post.findOne({ slug: params?.slug });
+    const post = await post?.findOne({ slug: params?.slug });
     if (!post) return { notFound: true };
 
     const { _id, title, content, meta, slug, tags, thumbnail, createdAt } =
