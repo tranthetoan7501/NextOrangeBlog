@@ -100,7 +100,7 @@ function ProfileMenu() {
             <MenuItem
               key={label}
               onClick={closeMenu}
-              className='flex items-center gap-2 rounded dark:text-pink-400 dark:hover:bg-purple-900'
+              className='flex items-center gap-2 rounded dark:text-pink-400 dark:hover:bg-purple-900 '
             >
               {createElement(icon, {
                 className: "h-4 w-4",
@@ -204,9 +204,9 @@ function NavList() {
           href={href}
           variant='small'
           color='blue-gray'
-          className='font-normal'
+          className='font-normal '
         >
-          <MenuItem className='flex items-center gap-2 lg:rounded-full dark:text-light-blue-400'>
+          <MenuItem className='flex items-center gap-2 lg:rounded-full dark:text-light-blue-400 dark:hover:bg-purple-900'>
             {label}
           </MenuItem>
         </Typography>
@@ -229,7 +229,7 @@ export function NavBar() {
 
   return (
     <Navbar className='mx-auto max-w-screen-xl p-2 lg:rounded-full lg:pl-6 dark:bg-black dark:border-purple-700 dark:shadow-lg dark:shadow-purple-300'>
-      <div className='relative mx-auto flex items-center text-blue-gray-900 dark:text-pink-600 dark:font-bold'>
+      <div className='relative mx-auto flex items-center text-blue-gray-900 dark:text-pink-400 dark:font-bold'>
         <Avatar
           variant='circular'
           size='sm'
@@ -240,7 +240,7 @@ export function NavBar() {
         <Typography
           as='a'
           href='/'
-          className='mr-4 ml-3 cursor-pointer py-1.5 font-medium'
+          className='mr-4 ml-3 cursor-pointer py-1.5 font-medium '
         >
           Penguin Blog
         </Typography>

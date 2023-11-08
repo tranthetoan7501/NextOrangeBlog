@@ -18,7 +18,7 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <main className={roboto.className + " dark:bg-black"}>
+      <main className={roboto.className + " dark:bg-black "}>
         <NavBar />
         <div className='lg:px-20 py-3 lg:py-6 '>
           <Component {...pageProps} />

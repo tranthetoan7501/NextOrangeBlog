@@ -34,7 +34,7 @@ export function PostCard({
       <Link href={"/" + slug}>
         <CardHeader
           color='blue-gray'
-          className='relative h-56 shadow-xl shadow-gray-600 dark:shadow-lg dark:shadow-blue-800'
+          className='relative h-56 shadow-xl shadow-gray-600 dark:shadow-none'
         >
           <Image
             src={
