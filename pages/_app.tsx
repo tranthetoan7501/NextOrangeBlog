@@ -6,6 +6,7 @@ import { Yrsa } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Banner from "@/components/common/Banner";
 
 const roboto = Yrsa({
   weight: "400",
@@ -20,6 +21,7 @@ export default function App({
     <SessionProvider session={session}>
       <main className={roboto.className + " dark:bg-black "}>
         <NavBar />
+        <Banner />
         <div className='lg:px-20 py-3 lg:py-6 '>
           <Component {...pageProps} />
         </div>

@@ -4,7 +4,7 @@ interface Props {
   desc?: string;
   thumbnail?: string;
 }
-export const APP_NAME = "PenguinBlog";
+export const APP_NAME = "HeyTellme";
 export default function AppHeader({ title, desc, thumbnail }: Props) {
   return (
     <Head>

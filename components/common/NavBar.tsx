@@ -191,7 +191,7 @@ const navListItems = [
   { href: "/admin/posts", label: "Posts" },
   { href: "/admin/users", label: "Users" },
   { href: "/admin/comments", label: "Comments" },
-  { href: "/admin/contact", label: "Contact" },
+  { href: "/admin/contact", label: "About" },
 ];
 
 function NavList() {
@@ -242,7 +242,7 @@ export function NavBar() {
           href='/'
           className='mr-4 ml-3 cursor-pointer py-1.5 font-medium '
         >
-          Penguin Blog
+          HeyTellme
         </Typography>
         <div className='absolute top-2/4 left-2/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block'>
           <NavList />
