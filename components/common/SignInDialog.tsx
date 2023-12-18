@@ -44,28 +44,28 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
             </Typography>
           </CardHeader>
 
-          <CardBody className='flex flex-col gap-4'>
+          {/* <CardBody className='flex flex-col gap-4'>
             <Input label='Email' size='lg' crossOrigin={undefined} />
             <Input label='Password' size='lg' crossOrigin={undefined} />
             <div className='-ml-2.5'>
               <Checkbox label='Remember Me' crossOrigin={undefined} />
             </div>
-          </CardBody>
+          </CardBody> */}
           <CardFooter className='pt-0'>
-            <Button
+            {/* <Button
               variant='gradient'
               className='mb-3'
               onClick={handleOpen}
               fullWidth
             >
               Sign In
-            </Button>
-            <div className='w-full flex justify-center mb-2'>
-              <span className='text-gray-500 text-center text-xs w-full'>
-                Or Sign In With
-              </span>
-            </div>
-
+            </Button> */}
+            <Typography
+              variant='small'
+              className='mt-4 mb-6 flex justify-center'
+            >
+              Sign in with
+            </Typography>
             <div className='sm:mx-7 flex justify-between'>
               <Button
                 onClick={async () => await signIn("github")}
@@ -119,20 +119,6 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
                 </svg>
               </Button>
             </div>
-
-            <Typography variant='small' className='mt-2 flex justify-center'>
-              Don&apos;t have an account?
-              <Typography
-                as='a'
-                href='#signup'
-                variant='small'
-                color='blue'
-                className='ml-1 font-bold'
-                onClick={handleOpen}
-              >
-                Sign up
-              </Typography>
-            </Typography>
           </CardFooter>
         </Card>
       </Dialog>

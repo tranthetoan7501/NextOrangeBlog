@@ -82,10 +82,7 @@ function ProfileMenu() {
             size='sm'
             alt='tania andrew'
             className='border border-gray-900 p-0.5'
-            src={
-              userProfile?.avatar ||
-              "https://res.cloudinary.com/dcojxsjnw/image/upload/v1677254126/4e984a4f23b46ed4ec342a7614b1364a2b2f7e4d.jpg"
-            }
+            src={userProfile?.avatar || "/defaultAvatar.png"}
           />
           <ChevronDownIcon
             strokeWidth={2.5}
