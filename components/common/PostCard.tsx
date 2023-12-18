@@ -30,7 +30,7 @@ export function PostCard({
   const { title, slug, meta, createdAt, tags, thumbnail } = post;
   const date = useFormattedDate(createdAt);
   return (
-    <Card className='mt-6 w-92 shadow-xl shadow-gray-300 dark:bg-black dark:border-cyan-600 dark:shadow-lg dark:shadow-purple-300'>
+    <Card className='mt-6 w-92 shadow-xl shadow-gray-300 dark:bg-black  dark:shadow-lg dark:border dark:border-purple-800'>
       <Link href={"/" + slug}>
         <CardHeader
           color='blue-gray'
