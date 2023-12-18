@@ -236,7 +236,7 @@ export function NavBar() {
           size='sm'
           alt='tania andrew'
           className='border dark:border-purple-700'
-          src='./penguin.png'
+          src='/penguin.png'
         />
         <Image
           src='/text.png'
