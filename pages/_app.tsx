@@ -7,6 +7,14 @@ import { SessionProvider } from "next-auth/react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Banner from "@/components/common/Banner";
+import dynamic from "next/dynamic";
+
+const DynamicComponent = dynamic(
+  () => import("@/components/common/StarsCanvas"),
+  {
+    ssr: false,
+  }
+);
 
 const roboto = Yrsa({
   weight: "400",
@@ -19,10 +27,11 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <main className={roboto.className + " dark:bg-black "}>
+      <DynamicComponent />
+      <main className={roboto.className + " dark:bg-black z-40"}>
         <NavBar />
         <Banner />
-        <div className='lg:px-20 py-3 lg:py-6 '>
+        <div className='lg:px-20 py-3 lg:py-6 z-50'>
           <Component {...pageProps} />
         </div>
         <ToastContainer />

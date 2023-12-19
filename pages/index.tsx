@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import AppHeader from "@/components/common/AppHeader";
 import InfiniteScrollPosts from "@/components/common/InfiniteScrollPosts";
+
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 export default function Home({ posts }: Props) {

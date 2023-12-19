@@ -13,7 +13,7 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 export default function SinglePost({ post }: Props) {
   const date = useFormattedDate(post?.createdAt);
   return (
-    <div>
+    <div className='my-z-100'>
       <AppHeader
         title={post?.title || ""}
         desc={post?.meta}
@@ -32,7 +32,7 @@ export default function SinglePost({ post }: Props) {
           </div>
         ) : null}
 
-        <h1 className='text-4xl lg:text-6xl font-semibold text-primary-dark dark:text-primary pt-5 dark:text-blue-700'>
+        <h1 className='text-4xl  lg:text-6xl font-semibold text-primary-dark dark:text-primary pt-5 dark:text-blue-700'>
           {post?.title || ""}
         </h1>
 
@@ -53,7 +53,7 @@ export default function SinglePost({ post }: Props) {
           </span>
         </div>
 
-        <div className='prose prose-lg dark:prose-invert max-w-5xl mx-auto'>
+        <div className='prose prose-lg dark:prose-invert max-w-5xl mx-auto z-40'>
           {parse(post?.content)}
         </div>
       </div>

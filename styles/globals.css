@@ -34,6 +34,8 @@
   width: 100px !important;
 }
 iframe {
+  position: relative;
+  z-index: 10;
   max-width: 100% !important; /* Đặt chiều rộng tối đa là 100% của phần tử cha */
   /* Đảm bảo chiều cao tự động điều chỉnh theo tỷ lệ khung hình */
   display: block !important; /* Đặt dạng hiển thị thành block để loại bỏ khoảng trắng phía dưới */
@@ -43,7 +45,9 @@ iframe {
 
 @media (max-width: 768px) {
   iframe {
-    height: 300px !important; /* Chiều cao cho điện thoại di động */
+    height: 300px !important;
+    position: relative;
+    z-index: 10; /* Chiều cao cho điện thoại di động */
   }
 }
 
@@ -56,3 +60,8 @@ iframe {
     )
     rgb(var(--background-start-rgb));
 } */
+
+.my-z-100 {
+  position: relative;
+  z-index: 100 !important;
+}
