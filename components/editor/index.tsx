@@ -144,7 +144,7 @@ export default function Editor({
 
   return (
     <>
-      <div className='flex items-center justify-between mb-3'>
+      <div className='flex items-center justify-between mb-3 my-z-100'>
         <ThumbnailSelector
           initialValue={post.thumbnail as string}
           onChange={updateThumbnail}
@@ -155,7 +155,7 @@ export default function Editor({
       </div>
       <input
         type='text'
-        className='outline-none bg-transparent w-full border-0 border-b-[1px] border-orange-500 dark:border-secondary-light text-4xl font-semibold text-green-700 dark:text-primary mb-3'
+        className='outline-none my-z-100 bg-transparent w-full border-0 border-b-[1px] border-orange-500 dark:border-secondary-light text-4xl font-semibold text-green-700 dark:text-primary mb-3'
         placeholder='Title'
         onChange={updateTitle}
         value={post.title}
