@@ -22,10 +22,12 @@ import {
   PowerIcon,
   Bars2Icon,
   LightBulbIcon,
+  MagnifyingGlassCircleIcon,
 } from "@heroicons/react/24/outline";
 import SignInDialog from "./SignInDialog";
 import { UserProfile } from "@/utils/type";
 import Image from "next/image";
+import SearchDialog from "./SearchDialog";
 
 // profile menu component
 const profileMenuItems = [
@@ -61,6 +63,7 @@ function ProfileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const closeMenu = () => setIsMenuOpen(false);
   const [showDialog, setShowDialog] = useState(false);
+
   const { data, status } = useSession();
   const isAuth = status === "authenticated";
   const userProfile = data?.user as UserProfile;
@@ -184,32 +187,53 @@ function ProfileMenu() {
 
 // nav list component
 const navListItems = [
-  { href: "/", label: "Home" },
-  { href: "/admin", label: "Dashboard" },
-  { href: "/admin/posts", label: "Posts" },
-  { href: "/admin/users", label: "Users" },
-  { href: "/admin/comments", label: "Comments" },
-  { href: "/admin/contact", label: "About" },
+  { href: "/", label: "Trang chủ" },
+  //{ href: "/admin", label: "Dashboard" },
+  { href: "/admin/posts", label: "Bài viết" },
+  { href: "/admin/users", label: "Đếm ngày" },
+  { href: "/admin/contact", label: "Thông tin" },
+  //{ href: "/admin/comments", label: "Tìm kiếm" },
 ];
 
 function NavList() {
+  const [showSearch, setSearch] = useState(false);
+  const toggleShowSearch = () => {
+    setSearch((cur) => !cur);
+    console.log(showSearch);
+  };
   return (
-    <ul className='mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center'>
-      {navListItems.map(({ label, href }, key) => (
+    <div>
+      <ul className='mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center'>
+        {navListItems.map(({ label, href }, key) => (
+          <Typography
+            key={label}
+            as='a'
+            href={href}
+            variant='small'
+            color='blue-gray'
+            className='font-normal '
+          >
+            <MenuItem className='flex items-center gap-2 lg:rounded-full dark:text-light-blue-400 dark:hover:bg-purple-900'>
+              {label}
+            </MenuItem>
+          </Typography>
+        ))}
+
         <Typography
-          key={label}
+          onClick={toggleShowSearch}
+          key='Tìm kiếm'
           as='a'
-          href={href}
           variant='small'
           color='blue-gray'
           className='font-normal '
         >
-          <MenuItem className='flex items-center gap-2 lg:rounded-full dark:text-light-blue-400 dark:hover:bg-purple-900'>
-            {label}
+          <MenuItem className='flex items-center gap-2 lg:rounded-full dark:text-light-blue-400 dark:hover:bg-purple-900 '>
+            Tìm kiếm
           </MenuItem>
         </Typography>
-      ))}
-    </ul>
+      </ul>
+      <SearchDialog open={showSearch} handler={toggleShowSearch} />
+    </div>
   );
 }
 
