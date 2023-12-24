@@ -15,7 +15,14 @@ export default function AppHeader({ title, desc, thumbnail }: Props) {
           content={thumbnail ? thumbnail : "/penguin.png"}
         />
       )}
-      <meta name='description' content={desc} />
+      <meta
+        name='description'
+        content={
+          desc
+            ? desc
+            : "HeyTellme Blog - trang blog của một sinh viên khô khan,Hey! Tell me hãy kể câu chuyện của bạn, biết đâu nó giống câu chuyện của tôi"
+        }
+      />
       <meta name='robots' content='index, follow'></meta>
     </Head>
   );
