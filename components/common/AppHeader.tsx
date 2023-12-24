@@ -3,6 +3,7 @@ interface Props {
   title?: string;
   desc?: string;
   thumbnail?: string;
+  tags?;
 }
 export const APP_NAME = "HeyTellme Blog";
 export default function AppHeader({ title, desc, thumbnail }: Props) {
@@ -16,7 +17,12 @@ export default function AppHeader({ title, desc, thumbnail }: Props) {
         />
       )}
       <meta
+        name='keywords'
+        content='Heytellme, Hey tell me,Heytellme blog, Hey tell me blog'
+      ></meta>
+      <meta
         name='description'
+        property='description'
         content={
           desc
             ? desc
