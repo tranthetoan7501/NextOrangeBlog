@@ -4,7 +4,7 @@ interface Props {
   desc?: string;
   thumbnail?: string;
 }
-export const APP_NAME = "HeyTellme";
+export const APP_NAME = "HeyTellme Blog";
 export default function AppHeader({ title, desc, thumbnail }: Props) {
   return (
     <Head>
