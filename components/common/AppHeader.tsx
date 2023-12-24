@@ -10,7 +10,8 @@ export default function AppHeader({ title, desc, thumbnail }: Props) {
     <Head>
       <title>{title ? title + " | " + APP_NAME : APP_NAME}</title>
       {thumbnail && <meta property='og:image' content={thumbnail} />}
-      <meta content={desc} name='description' />
+      <meta name='description' content={desc} />
+      <meta name='robots' content='index, follow'></meta>
     </Head>
   );
 }
