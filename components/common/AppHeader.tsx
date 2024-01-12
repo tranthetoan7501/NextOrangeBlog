@@ -3,7 +3,6 @@ interface Props {
   title?: string;
   desc?: string;
   thumbnail?: string;
-  tags?;
 }
 export const APP_NAME = "HeyTellme Blog";
 export default function AppHeader({ title, desc, thumbnail }: Props) {

@@ -1,14 +1,19 @@
 import formidable from "formidable";
-import { NextApiRequest } from "next";
+import { NextApiRequest, NextApiResponse } from "next";
 import Post, { PostModelSchema } from "../models/Post";
-import { PostDetail } from "@/utils/type";
+import { PostDetail, UserProfile } from "@/utils/type";
 import dbConnect from "./dbConnect";
-import { profile } from "console";
+import { getServerSession } from "next-auth";
+import authOptions from "../pages/api/auth/[...nextauth]";
 import User from "@/models/User";
 
 interface FormidablePromise<T> {
   files: formidable.Files;
   body: T;
+}
+interface SessionInfo {
+  user: UserProfile;
+  expires: string;
 }
 
 export const readFile = <T extends object>(
@@ -42,6 +47,7 @@ export const readPostsFromDb = async (limit: number, pageNo: number) => {
 
 export const formatPosts = (posts: PostModelSchema[]): PostDetail[] => {
   return posts.map((post) => ({
+    id: post._id.toString(),
     title: post.title,
     slug: post.slug,
     createdAt: post.createdAt.toString(),
@@ -72,4 +78,16 @@ export const handleUserOAuth = async (profile: any) => {
     userProfile.role = oldUser.role;
   }
   return { id: profile.id, ...userProfile };
+};
+
+export const isAdmin = async (req: NextApiRequest, res: NextApiResponse) => {
+  const session: SessionInfo | null = await getServerSession(
+    req,
+    res,
+    authOptions
+  );
+  await dbConnect();
+  const user = await User.findOne({ email: session?.user.email });
+  console.log("session?.user", user);
+  return user && user.role === "admin";
 };

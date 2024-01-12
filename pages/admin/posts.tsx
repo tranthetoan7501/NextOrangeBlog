@@ -5,11 +5,15 @@ import { useState } from "react";
 import axios from "axios";
 import AppHeader from "@/components/common/AppHeader";
 import InfiniteScrollPosts from "@/components/common/InfiniteScrollPosts";
+import { filterPosts } from "@/utils/helper";
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 export default function Admin({ posts }: Props) {
   const [postsToRender, setPostsToRender] = useState(posts);
   const [hasMorePosts, setHasMorePosts] = useState(true);
+  const removePost = (post: PostDetail) => {
+    setPostsToRender(filterPosts(postsToRender, post));
+  };
   const isAdmin = true;
   const fetchMorePosts = async () => {
     try {
@@ -34,7 +38,8 @@ export default function Admin({ posts }: Props) {
         next={fetchMorePosts}
         dataLength={postsToRender.length}
         posts={postsToRender}
-        showControls={isAdmin}
+        showControls
+        onPostDeleted={removePost}
       />
     </div>
   );

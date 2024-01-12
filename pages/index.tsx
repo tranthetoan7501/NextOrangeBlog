@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import AppHeader from "@/components/common/AppHeader";
 import InfiniteScrollPosts from "@/components/common/InfiniteScrollPosts";
+import { filterPosts } from "@/utils/helper";
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
@@ -36,6 +37,9 @@ export default function Home({ posts }: Props) {
         dataLength={postsToRender.length}
         posts={postsToRender}
         showControls={isAdmin}
+        onPostDeleted={(post) =>
+          setPostsToRender(filterPosts(postsToRender, post))
+        }
       />
     </div>
   );

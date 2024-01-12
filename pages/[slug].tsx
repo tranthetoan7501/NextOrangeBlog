@@ -32,7 +32,7 @@ export default function SinglePost({ post }: Props) {
           </div>
         ) : null}
 
-        <h1 className='text-4xl  lg:text-6xl font-semibold text-primary-dark dark:text-primary pt-5 dark:text-blue-700'>
+        <h1 className='text-4xl lg:text-6xl font-semiboldsss text-primary-dark dark:text-primary pt-5 dark:text-blue-700'>
           {post?.title || ""}
         </h1>
 

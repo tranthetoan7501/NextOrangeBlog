@@ -5,7 +5,6 @@ import FacebookProvider from "next-auth/providers/facebook";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/User";
 import { handleUserOAuth } from "@/lib/utils";
-import { use } from "react";
 const authOptions: NextAuthOptions = {
   providers: [
     GitHubAuthProvider({
@@ -65,11 +64,13 @@ const authOptions: NextAuthOptions = {
           avatar: user.avatar,
           role: user.role,
         } as any;
+      console.log("session middleware", session);
       return session;
     },
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
+    signIn: "/auth/signin",
     error: "/404",
   },
 };
