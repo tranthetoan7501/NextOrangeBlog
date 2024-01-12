@@ -64,7 +64,6 @@ const authOptions: NextAuthOptions = {
           avatar: user.avatar,
           role: user.role,
         } as any;
-      console.log("session middleware", session);
       return session;
     },
   },

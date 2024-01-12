@@ -35,15 +35,15 @@ async function deletePost(req: NextApiRequest, res: NextApiResponse<any>) {
     const admin = await isAdmin(req, res);
     if (!admin) return res.status(401).json({ error: "unauthorized request!" });
 
-    // const postId = req.query.postId as string;
-    // const post = await Post.findByIdAndDelete(postId);
-    // if (!post) return res.status(404).json({ error: "Post not found!" });
+    const postId = req.query.postId as string;
+    const post = await Post.findByIdAndDelete(postId);
+    if (!post) return res.status(404).json({ error: "Post not found!" });
 
-    // // remove thumbnail from post
-    // const publicId = post.thumbnail?.public_id;
-    // if (publicId) {
-    //   await cloudinary.uploader.destroy(publicId);
-    // }
+    // remove thumbnail from post
+    const publicId = post.thumbnail?.public_id;
+    if (publicId) {
+      await cloudinary.uploader.destroy(publicId);
+    }
     res.json({ removed: true });
   } catch (error: any) {
     res.status(500).json({ error: error.message });
