@@ -18,7 +18,7 @@ export default function CreatePost() {
       // submit our post
       const { data } = await axios.post("/api/posts", formData);
       if (data.isSuccess) {
-        toast("Update successfully!", {
+        toast("Create successfully!", {
           className: "dark:bg-gray-800 dark:text-white",
         });
       } else {

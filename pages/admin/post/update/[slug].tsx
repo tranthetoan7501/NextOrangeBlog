@@ -24,7 +24,9 @@ export default function Update({ post }: Props) {
       const { data } = await axios.patch("/api/posts/" + post.id, formData);
 
       if (data.isSuccess) {
-        toast("Update successfully!");
+        toast("Update successfully!", {
+          className: "dark:bg-gray-800 dark:text-white",
+        });
       } else {
         toast("Update fail!");
       }
