@@ -28,9 +28,9 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <DynamicComponent />
-      <main className={roboto.className + " dark:bg-black z-40"}>
+      <main className={roboto.className + " dark:bg-black z-40 min-h-screen"}>
         <NavBar />
-        <Banner />
+        {/* <Banner /> */}
         <div className='lg:px-20 py-3 lg:py-6 z-50'>
           <Component {...pageProps} />
         </div>
