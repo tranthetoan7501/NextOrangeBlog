@@ -1,0 +1,5 @@
+# heytellme robots file
+User-Agent: *
+Disallow: /admin/
+Allow: /
+Sitemap: https:/heytellme.com/sitemap.xml
