@@ -5,6 +5,8 @@ import FacebookProvider from "next-auth/providers/facebook";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/User";
 import { handleUserOAuth } from "@/lib/utils";
+
+const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRETS } = process.env;
 const authOptions: NextAuthOptions = {
   providers: [
     GitHubAuthProvider({

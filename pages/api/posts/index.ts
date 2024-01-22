@@ -31,7 +31,6 @@ export default async function handler(
 
 async function createNewPost(req: NextApiRequest, res: NextApiResponse<any>) {
   const { files, body } = await readFile<any>(req);
-  console.log("body", body);
   let tags;
   if (body.tags) tags = JSON.parse(body.tags[0] as string);
   const title = body.title[0];

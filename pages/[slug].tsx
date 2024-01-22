@@ -1,12 +1,16 @@
 import dbConnect from "@/lib/dbConnect";
 import Post from "@/models/Post";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import { Button } from "@material-tailwind/react";
 
 import parse from "html-react-parser";
 import AppHeader from "@/components/common/AppHeader";
 import Image from "next/image";
 import dateFormat from "dateformat";
 import useFormattedDate from "@/hooks/useFormateDate";
+import useAuth from "@/hooks/useAuth";
+import CommentForm from "@/components/common/CommentForm";
+import Comments from "@/components/common/Comments";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -19,7 +23,7 @@ export default function SinglePost({ post }: Props) {
         desc={post?.meta}
         thumbnail={post?.thumbnail}
       />
-      <div className='pb-20 px-2 sm:px-10 xl:px-52 lg:px-32'>
+      <div className='pb-5 px-2 sm:px-10 xl:px-52 lg:px-32'>
         {post?.thumbnail ? (
           <div className='relative aspect-video'>
             <Image
@@ -52,10 +56,10 @@ export default function SinglePost({ post }: Props) {
             {date}
           </span>
         </div>
-
         <div className='prose prose-lg dark:prose-invert max-w-5xl mx-auto z-40'>
           {parse(post?.content)}
         </div>
+        <Comments belongsTo={post.id} />
       </div>
     </div>
   );

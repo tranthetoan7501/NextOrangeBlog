@@ -21,7 +21,11 @@ export default function Update({ post }: Props) {
       const formData = generateFormData(post);
       // submit our post
       await connection?.disconnect();
-      const { data } = await axios.patch("/api/posts/" + post.id, formData);
+      const {
+        data,
+      }: any = async () => {
+        return await axios.patch("/api/posts/" + post.id, formData);
+      };
 
       if (data.isSuccess) {
         toast("Update successfully!", {

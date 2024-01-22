@@ -18,9 +18,11 @@ export default function Admin({ posts }: Props) {
   const fetchMorePosts = async () => {
     try {
       pageNo++;
-      const { data } = await axios(
-        `/api/posts?limit=${limit}&pageNo=${pageNo}`
-      );
+      const {
+        data,
+      }: any = async () => {
+        return await axios(`/api/posts?limit=${limit}&pageNo=${pageNo}`);
+      };
       console.log(data.posts);
       if (data.posts.length < limit) {
         setPostsToRender([...postsToRender, ...data.posts]);

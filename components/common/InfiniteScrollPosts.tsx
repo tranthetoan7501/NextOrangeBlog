@@ -47,7 +47,11 @@ export default function InfiniteScrollPosts({
     setShowConfirmModal(false);
     setRemoving(true);
 
-    const { data } = await axios.delete(`/api/posts/${postToRemove.id}`);
+    const {
+      data,
+    }: any = async () => {
+      return await axios.delete(`/api/posts/${postToRemove.id}`);
+    };
     console.log(data);
 
     if (data.removed) {

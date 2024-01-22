@@ -100,7 +100,11 @@ export default function Editor({
     setPost({ ...post, title: target.value });
   const updateThumbnail = (file: File) => setPost({ ...post, thumbnail: file });
   const fetchImages = async () => {
-    const { data } = await axios("/api/image");
+    const {
+      data,
+    }: any = async () => {
+      return await axios("/api/image");
+    };
     setImages(data.images);
   };
 
@@ -108,7 +112,11 @@ export default function Editor({
     setUploading(true);
     const formData = new FormData();
     formData.append("image", image);
-    const { data } = await axios.post("/api/image", formData);
+    const {
+      data,
+    }: any = async () => {
+      return await axios.post("/api/image", formData);
+    };
     setUploading(false);
     setImages([data, ...images]);
   };

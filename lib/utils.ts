@@ -1,11 +1,12 @@
 import formidable from "formidable";
 import { NextApiRequest, NextApiResponse } from "next";
 import Post, { PostModelSchema } from "../models/Post";
-import { PostDetail, UserProfile } from "@/utils/type";
+import { CommentResponse, PostDetail, UserProfile } from "@/utils/type";
 import dbConnect from "./dbConnect";
 import { getServerSession } from "next-auth";
 import authOptions from "../pages/api/auth/[...nextauth]";
 import User from "@/models/User";
+import { IComment } from "@/models/Comment";
 
 interface FormidablePromise<T> {
   files: formidable.Files;
@@ -57,6 +58,26 @@ export const formatPosts = (posts: PostModelSchema[]): PostDetail[] => {
   }));
 };
 
+const getLikedByOwner = (likes: any[], user: UserProfile) =>
+  likes.includes(user.id);
+
+export const formatComment = (
+  comment: IComment,
+  user?: UserProfile
+): CommentResponse => {
+  const owner = comment.owner as any;
+  return {
+    id: comment._id.toString(),
+    content: comment.content,
+    likes: comment.likes.length,
+    chiefComment: comment?.chiefComment || false,
+    createdAt: comment.createdAt?.toString(),
+    owner: { id: owner._id, name: owner.name, avatar: owner.avatar },
+    repliedTo: comment?.repliedTo?.toString(),
+    likedByOwner: user ? getLikedByOwner(comment.likes, user) : false,
+  };
+};
+
 export const handleUserOAuth = async (profile: any) => {
   await dbConnect();
   const oldUser = await User.findOne({ email: profile.email });
@@ -90,4 +111,15 @@ export const isAdmin = async (req: NextApiRequest, res: NextApiResponse) => {
   const user = await User.findOne({ email: session?.user.email });
   console.log("session?.user", user);
   return user && user.role === "admin";
+};
+
+export const isAuth = async (req: NextApiRequest, res: NextApiResponse) => {
+  const session: SessionInfo | null = await getServerSession(
+    req,
+    res,
+    authOptions
+  );
+  await dbConnect();
+  const user = await User.findOne({ email: session?.user.email });
+  if (user) return user as UserProfile;
 };

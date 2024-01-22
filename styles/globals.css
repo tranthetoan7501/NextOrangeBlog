@@ -65,3 +65,32 @@ iframe {
   position: relative;
   z-index: 100 !important;
 }
+.comment-box {
+  height: 80vh;
+}
+
+::-webkit-scrollbar {
+  width: 3px; /* Đặt chiều rộng của thanh cuộn */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(168, 168, 168, 0.993); /* Màu của "thanh cuộn" */
+  border-radius: 4px; /* Bo tròn cạnh */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Màu nền trong suốt của "khung" thanh cuộn */
+}
+
+::-moz-scrollbar {
+  width: 4px; /* Đặt chiều rộng của thanh cuộn */
+}
+
+::-moz-scrollbar-thumb {
+  background-color: rgba(134, 5, 166, 0.993); /* Màu của "thanh cuộn" */
+  border-radius: 4px; /* Bo tròn cạnh */
+}
+
+::-moz-scrollbar-track {
+  background: transparent; /* Màu nền trong suốt của "khung" thanh cuộn */
+}
