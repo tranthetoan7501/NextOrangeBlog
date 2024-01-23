@@ -21,13 +21,13 @@ export default function CommentForm({ onSubmit, busy }: Props) {
       if (value === "<p></p>") return;
       if (value) {
         onSubmit(value);
+        editor?.chain().focus().setContent("").run();
       }
     }
   };
   const handleSubmitEnter = (event: any) => {
     if (event.key === "Enter" && !event.shiftKey) {
       handleSubmit();
-      editor?.chain().focus().setContent("").run();
     }
   };
   const userProfile = useAuth();
