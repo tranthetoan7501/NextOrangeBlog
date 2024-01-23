@@ -32,7 +32,7 @@ export default function Comments({ belongsTo }: Props) {
   return (
     <div>
       <div className='text-3xl font-bold pt-16 pb-14 dark:text-white'>
-        Bình luận gì nè :{" "}
+        Comments:{" "}
       </div>
       <div className='overflow-auto comment-box'>
         {comments?.map((comment) => (
