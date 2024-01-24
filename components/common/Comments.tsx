@@ -43,7 +43,7 @@ export default function Comments({ belongsTo }: Props) {
       {userProFile ? (
         <CommentForm onSubmit={handleCreateComment} />
       ) : (
-        <span className='text-2xl pt-10'>Login to comment</span>
+        <span className='text-2xl pt-10'>Đăng nhập để bình luận</span>
       )}
     </div>
   );

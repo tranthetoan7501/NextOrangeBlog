@@ -22,6 +22,7 @@ export default function CommentCard({ comment }: Props) {
   const { owner, createdAt, content, likedByOwner, likes } = comment;
   const { name, avatar } = owner;
   const [isDisplay, setIsDisplay] = useState(false);
+  const [showForm, setShowForm] = useState(false);
   return (
     <div
       className='text-black flex py-3'

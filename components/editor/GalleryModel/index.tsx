@@ -45,7 +45,7 @@ export default function GallaryModel({
   };
   return (
     <ModalContainer visible={visible} onClose={onClose}>
-      <div className='max-w-4xl p-2 border-2 border-green-500 bg-white dark:bg-primary rounded'>
+      <div className='max-w-4xl p-2 border-2 border-green-500 bg-white dark:bg-primary rounded my-z-1000'>
         <div className='flex'>
           {/* gallery */}
           <div className='basis-[83%] max-h-[450px] overflow-y-auto '>

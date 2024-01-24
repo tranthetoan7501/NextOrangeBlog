@@ -65,6 +65,14 @@ iframe {
   position: relative;
   z-index: 100 !important;
 }
+.my-z-90 {
+  position: relative;
+  z-index: 90 !important;
+}
+.my-z-1000 {
+  position: relative;
+  z-index: 1000 !important;
+}
 .comment-box {
   height: 80vh;
 }

@@ -100,11 +100,7 @@ export default function Editor({
     setPost({ ...post, title: target.value });
   const updateThumbnail = (file: File) => setPost({ ...post, thumbnail: file });
   const fetchImages = async () => {
-    const {
-      data,
-    }: any = async () => {
-      return await axios("/api/image");
-    };
+    const { data } = await axios("/api/image");
     setImages(data.images);
   };
 
@@ -112,11 +108,8 @@ export default function Editor({
     setUploading(true);
     const formData = new FormData();
     formData.append("image", image);
-    const {
-      data,
-    }: any = async () => {
-      return await axios.post("/api/image", formData);
-    };
+    const { data } = await axios.post("/api/image", formData);
+
     setUploading(false);
     setImages([data, ...images]);
   };
@@ -163,13 +156,13 @@ export default function Editor({
       </div>
       <input
         type='text'
-        className='outline-none my-z-100 bg-transparent w-full border-0 border-b-[1px] border-orange-500 dark:border-secondary-light text-4xl font-semibold text-green-700 dark:text-primary mb-3'
+        className='outline-none bg-transparent w-full border-0 border-b-[1px] border-blue-500 dark:border-secondary-light text-4xl font-semibold text-green-700 dark:text-primary mb-3'
         placeholder='Title'
         onChange={updateTitle}
         value={post.title}
       />
       <ToolBar editor={editor} onOpenImageClick={() => setShowGallery(true)} />
-      <div className='h-[1px] w-full bg-orange-500 dark:bg-secondary-light my-3' />
+      <div className='h-[1px] w-full bg-blue-500 dark:bg-secondary-light my-3' />
       {editor ? <EditLink editor={editor} /> : null}
       <EditorContent editor={editor} className='h-500' />
       <div className='h-[1px] w-full bg-secondary-dark dark:bg-secondary-light my-3' />

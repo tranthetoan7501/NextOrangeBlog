@@ -26,7 +26,7 @@ export default function Gallery({
           return (
             <div key={index} className='basis-1/4 p-0.5'>
               <Images
-                alt='sdasdas'
+                alt='image'
                 src={src}
                 selected={selectedImage === index}
                 onClick={() => onSelect(index)}

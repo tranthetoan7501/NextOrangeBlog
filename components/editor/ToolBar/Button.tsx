@@ -22,7 +22,7 @@ export default function Button({
   }, [active]);
 
   const commonClasses =
-    "p-2 border rounded text-lg hover:scale-110 hover:shadow-md transition ";
+    "p-2 border rounded text-lg hover:scale-110 hover:shadow-md transition relative ";
 
   return (
     <button

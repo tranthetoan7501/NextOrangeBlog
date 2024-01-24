@@ -30,7 +30,7 @@ export default function ModalContainer({ children, visible, onClose }: Props) {
     <div
       id={containerId}
       onClick={handleClick}
-      className="fixed inset-0 bg-primary dark:bg-primary-dark dark:bg-opacity-5 bg-opacity-5 backdrop-blur-[2px] z-50 flex items-center justify-center"
+      className='fixed z-100 inset-0 bg-primary dark:bg-primary-dark dark:bg-opacity-5 bg-opacity-5 backdrop-blur-[2px] flex items-center justify-center'
     >
       {children}
     </div>

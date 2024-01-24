@@ -47,22 +47,22 @@ export default function InsertLink({ onSubmit }: Props) {
       onKeyDown={(event) => {
         if (event.key === "Escape") setVisible(false);
       }}
-      className="relative"
+      className='relative'
     >
       <Button onClick={toggleDropdown}>
         <BsYoutube />
       </Button>
       {visible && (
-        <div className="absolute top-12 -right-28 mt-4 z-50">
-          <Card className="mt-1 w-60 p-3">
+        <div className='absolute top-12 -right-28 mt-4 z-50'>
+          <Card className='mt-1 w-60 p-3'>
             <Input
-              label="Link Youtube"
+              label='Link Youtube'
               crossOrigin={undefined}
               value={url}
               onChange={({ target }) => setUrl(target.value)}
             />
 
-            <TButton className="mt-2" onClick={handleSubmit} color="green">
+            <TButton className='mt-2' onClick={handleSubmit} color='green'>
               Apply
             </TButton>
           </Card>
