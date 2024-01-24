@@ -43,7 +43,7 @@ export default function Comments({ belongsTo }: Props) {
       {userProFile ? (
         <CommentForm onSubmit={handleCreateComment} />
       ) : (
-        <Button color='blue'>Login to comment</Button>
+        <span className='text-2xl pt-10'>Login to comment</span>
       )}
     </div>
   );
