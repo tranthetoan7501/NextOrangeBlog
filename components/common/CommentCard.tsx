@@ -1,9 +1,19 @@
 import { CommentResponse } from "@/utils/type";
-import { Avatar, Button } from "@material-tailwind/react";
+import {
+  Avatar,
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverHandler,
+} from "@material-tailwind/react";
 import React, { use, useState } from "react";
 import parse from "html-react-parser";
 import { commentTime } from "@/utils/helper";
-import { BsFillReplyAllFill } from "react-icons/bs";
+import {
+  BsFillReplyAllFill,
+  BsFillTrashFill,
+  BsPencilSquare,
+} from "react-icons/bs";
 import { set } from "mongoose";
 interface Props {
   comment: CommentResponse;
@@ -31,11 +41,30 @@ export default function CommentCard({ comment }: Props) {
             <div className='font-bold'>{name}</div>
             {parse(content)}
           </div>
-          <div className='w-12 flex items-center justify-center  pr-2'>
+          <div className='w-12 flex items-center justify-center pr-2'>
             {isDisplay && (
-              <span className='text-gray-600 font-bold text-xl dark:text-gray-300 ml-1 flex items-center pb-2 justify-center rounded-full hover:bg-gray-200  dark:hover:bg-gray-800 w-6 h-6 m-auto cursor-pointer hover:text-blue-500 dark:hover:text-blue-400'>
-                ...
-              </span>
+              <Popover placement='bottom'>
+                <PopoverHandler>
+                  <span className='text-gray-600 font-bold text-xl dark:text-gray-300 ml-1 flex items-center pb-2 justify-center rounded-full hover:bg-gray-200  dark:hover:bg-gray-800 w-6 h-6 m-auto cursor-pointer hover:text-blue-500 dark:hover:text-blue-400'>
+                    ...
+                  </span>
+                </PopoverHandler>
+                <PopoverContent className='my-z-100 p-1 dark:bg-black border dark:border-purple-700'>
+                  <span className='pb-1'>
+                    <div className='flex   w-20 py-2 items-center px-2 rounded-lg text-black hover:bg-blue-300 dark:hover:bg-blue-800 cursor-pointer'>
+                      <BsPencilSquare className='dark:text-white' />
+                      <span className='ml-3 dark:text-white'>Edit</span>
+                    </div>
+                  </span>
+
+                  <span className='block '>
+                    <div className='flex  w-20 px-2 py-2 items-center rounded-lg mt-1 text-black hover:bg-blue-300 dark:hover:bg-purple-800  cursor-pointer'>
+                      <BsFillTrashFill className='dark:text-white' />
+                      <span className='ml-3 dark:text-white'>Delete</span>
+                    </div>
+                  </span>
+                </PopoverContent>
+              </Popover>
             )}
           </div>
         </div>
