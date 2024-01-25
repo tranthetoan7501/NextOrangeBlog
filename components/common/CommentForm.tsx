@@ -16,7 +16,7 @@ export default function CommentForm({ onSubmit, busy, initialState }: Props) {
       const value = editor?.getHTML();
       if (value === "<p></p>") return;
       if (value) {
-        onSubmit(value);
+        onSubmit(value.replace("<p></p>", ""));
         editor?.chain().focus().setContent("").run();
       }
     }
@@ -42,12 +42,12 @@ export default function CommentForm({ onSubmit, busy, initialState }: Props) {
   return (
     <div className='pr-2 pt-4 flex justify-center space-x-4'>
       <div className='flex w-full h-15 flex-row items-center rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2 dark:border-purple-600 '>
-        <div className='flex w-10'>
+        <div className='flex min-w-fit'>
           <Avatar
             variant='circular'
             size='sm'
             alt='tania andrew'
-            className='border border-gray-900 p-0.5 dark:border-white flex-none'
+            className='border border-gray-900 p-0.5 dark:border-white flex-none w-8 h-8'
             src={userProfile?.avatar || "/defaultAvatar.png"}
           />
         </div>

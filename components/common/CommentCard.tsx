@@ -57,13 +57,18 @@ export default function CommentCard({
 
   const displayReplyForm = () => {
     setShowForm(true);
+    setInitialState("");
+    console.log(showForm);
+  };
+  const handleOnEditClick = () => {
+    displayReplyForm();
+    console.log(content);
+    setInitialState(content);
   };
   const handCommentSubmit = (commentStr: string) => {
     if (initialState) {
       onUpdateSubmit && onUpdateSubmit(commentStr);
     } else {
-      // means we want to reply
-
       onReplySubmit && onReplySubmit(commentStr);
     }
     setShowForm(false);
@@ -88,8 +93,17 @@ export default function CommentCard({
             <div className='font-bold'>{name}</div>
             {parse(content)}
           </div>
-          <div className='sm:w-28 w-52 flex items-center justify-center pr-2'>
+          <div className='sm:w-36 w-80 flex items-center justify-center pr-2'>
             {isDisplay && (
+              <div className='text-gray-600 text-sm font-bold dark:text-gray-300 ml-1 p-1 h-15 rounded-full flex-row justify-center hover:bg-gray-200  dark:hover:bg-gray-800 m-auto cursor-pointer hover:text-blue-500 dark:hover:text-blue-400'>
+                <BsPencilSquare
+                  onClick={handleOnEditClick}
+                  className='dark:text-gray-900 text-gray-600 rounded-full dark:bg-gray-600 bg-gray-300  p-1 w-6 h-6 dark:hover:bg-white hover:bg-white dark:hover:text-red-700 hover:text-red-700'
+                />
+                <BsFillTrashFill className='dark:text-gray-900 text-gray-600 rounded-full dark:bg-gray-600 bg-gray-300  p-1 w-6 h-6 mt-1 dark:hover:bg-white hover:bg-white dark:hover:text-blue-700 hover:text-blue-700' />
+              </div>
+            )}
+            {/* {isDisplay && (
               <Popover placement='bottom'>
                 <PopoverHandler>
                   <span className='text-gray-600 font-bold text-xl dark:text-gray-300 ml-1 flex items-center pb-2 justify-center rounded-full hover:bg-gray-200  dark:hover:bg-gray-800 w-6 h-6 m-auto cursor-pointer hover:text-blue-500 dark:hover:text-blue-400'>
@@ -97,14 +111,14 @@ export default function CommentCard({
                   </span>
                 </PopoverHandler>
                 <PopoverContent className='my-z-100 p-1 dark:bg-black border dark:border-purple-700'>
-                  <span className='pb-1'>
+                  <span className='pb-1' onClick={handleOnEditClick}>
                     <div className='flex w-20 py-2 items-center px-2 rounded-lg text-black hover:bg-blue-300 dark:hover:bg-blue-800 cursor-pointer'>
                       <BsPencilSquare className='dark:text-white' />
                       <span className='ml-3 dark:text-white'>Edit</span>
                     </div>
                   </span>
 
-                  <span className='block '>
+                  <span className='block'>
                     <div className='flex  w-20 px-2 py-2 items-center rounded-lg mt-1 text-black hover:bg-blue-300 dark:hover:bg-purple-800  cursor-pointer'>
                       <BsFillTrashFill className='dark:text-white' />
                       <span className='ml-3 dark:text-white'>Delete</span>
@@ -112,7 +126,7 @@ export default function CommentCard({
                   </span>
                 </PopoverContent>
               </Popover>
-            )}
+            )} */}
           </div>
         </div>
 
