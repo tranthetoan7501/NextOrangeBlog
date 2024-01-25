@@ -38,7 +38,6 @@ export default function CommentCard({
   const [isDisplay, setIsDisplay] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [initialState, setInitialState] = useState("");
-  const userProfile = useAuth();
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const handleClickOutside = (event: MouseEvent) => {

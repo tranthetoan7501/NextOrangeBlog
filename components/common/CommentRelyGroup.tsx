@@ -27,14 +27,16 @@ export default function CommentRelyGroup({
     <div>
       {comment?.replies?.length ? (
         <div className='w-[93%] ml-auto pt-1'>
-          <span
-            className='hover:underline cursor-pointer dark:text-gray-400 pt-2 hover:text-blue-500 dark:hover:text-blue-300'
-            onClick={() => {
-              setDisplayReplyBox(true);
-            }}
-          >
-            {comment.replies.length} phản hồi
-          </span>
+          {!displayReplyBox && (
+            <span
+              className='hover:underline cursor-pointer dark:text-gray-400 pt-2 hover:text-blue-500 dark:hover:text-blue-300'
+              onClick={() => {
+                setDisplayReplyBox(true);
+              }}
+            >
+              {comment.replies.length} phản hồi
+            </span>
+          )}
           {displayReplyBox &&
             comment.replies.map((reply) => {
               return (
