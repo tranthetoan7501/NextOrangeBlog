@@ -31,7 +31,14 @@ export default function CommentForm({ onSubmit, busy, initialState }: Props) {
       editor?.chain().focus().setContent(initialState).run();
   }, [editor, initialState]);
   const userProfile = useAuth();
-
+  if (!userProfile)
+    return (
+      <>
+        <div className='dark:text-gray-300 text-gray-800 ml-5'>
+          Đăng nhập để bình luận
+        </div>
+      </>
+    );
   return (
     <div className='pr-2 pt-4 flex justify-center space-x-4'>
       <div className='flex w-full h-15 flex-row items-center rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2 dark:border-purple-600 '>

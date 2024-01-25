@@ -62,11 +62,6 @@ export default function Comments({ belongsTo }: Props) {
       <div className='text-3xl font-bold pt-16 pb-14 dark:text-white'>
         Comments:{" "}
       </div>
-      {/* <CommentCardGroup
-        comments={comments}
-        userProFile={userProFile}
-        handleReplySubmit={handleReplySubmit}
-      /> */}
       <div className='overflow-auto comment-box'>
         {comments?.map((comment) => (
           <div key={comment.id} className='py-2'>

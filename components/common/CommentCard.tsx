@@ -57,9 +57,7 @@ export default function CommentCard({
   }, []);
 
   const displayReplyForm = () => {
-    if (userProfile) {
-      setShowForm(true);
-    }
+    setShowForm(true);
   };
   const handCommentSubmit = (commentStr: string) => {
     if (initialState) {
