@@ -1,27 +1,15 @@
 import useAuth from "@/hooks/useAuth";
 import useEditorConfig from "@/hooks/useEditorConfig";
-import {
-  Avatar,
-  Button,
-  IconButton,
-  Textarea,
-  Input,
-} from "@material-tailwind/react";
+import { Avatar, IconButton } from "@material-tailwind/react";
 import { EditorContent } from "@tiptap/react";
-import { useCallback, useEffect, useId } from "react";
+import { useEffect } from "react";
 
 interface Props {
   onSubmit: (content: string) => void;
   busy?: boolean;
-  onClose?(): void;
   initialState?: string;
 }
-export default function CommentForm({
-  onSubmit,
-  busy,
-  initialState,
-  onClose,
-}: Props) {
+export default function CommentForm({ onSubmit, busy, initialState }: Props) {
   const { editor } = useEditorConfig({ placeholder: "Add your comment..." });
   const handleSubmit = () => {
     if (editor && !busy) {
@@ -46,7 +34,7 @@ export default function CommentForm({
 
   return (
     <div className='pr-2 pt-4 flex justify-center space-x-4'>
-      <div className='flex w-full flex-row items-center rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2 dark:border-purple-600 '>
+      <div className='flex w-full h-15 flex-row items-center rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2 dark:border-purple-600 '>
         <div className='flex w-10'>
           <Avatar
             variant='circular'

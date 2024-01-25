@@ -18,12 +18,25 @@ import { set } from "mongoose";
 import CommentForm from "./CommentForm";
 interface Props {
   comment: CommentResponse;
+  showControls?: boolean;
+  onUpdateSubmit?(content: string): void;
+  onReplySubmit?(content: string): void;
+  onDeleteClick?(): void;
+  onLikeClick?(): void;
 }
-export default function CommentCard({ comment }: Props) {
+export default function CommentCard({
+  comment,
+  showControls,
+  onUpdateSubmit,
+  onReplySubmit,
+  onDeleteClick,
+  onLikeClick,
+}: Props) {
   const { owner, createdAt, content, likedByOwner, likes } = comment;
   const { name, avatar } = owner;
   const [isDisplay, setIsDisplay] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [initialState, setInitialState] = useState("");
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const handleClickOutside = (event: MouseEvent) => {
@@ -44,13 +57,19 @@ export default function CommentCard({ comment }: Props) {
   const displayReplyForm = () => {
     setShowForm(true);
   };
-  const hideReplyForm = () => {
+  const handCommentSubmit = (commentStr: string) => {
+    if (initialState) {
+      onUpdateSubmit && onUpdateSubmit(commentStr);
+    } else {
+      // means we want to reply
+      onReplySubmit && onReplySubmit(commentStr);
+    }
     setShowForm(false);
   };
   return (
     <div
       ref={dropdownRef}
-      className='text-black flex py-3'
+      className='text-black flex pt-2'
       onMouseEnter={() => setIsDisplay(true)}
       onMouseLeave={() => setIsDisplay(false)}
     >
@@ -111,7 +130,10 @@ export default function CommentCard({ comment }: Props) {
         </div>
         {showForm && (
           <div className='mt-2'>
-            <CommentForm onSubmit={() => {}} onClose={hideReplyForm} />
+            <CommentForm
+              onSubmit={handCommentSubmit}
+              initialState={initialState}
+            />
           </div>
         )}
       </div>
