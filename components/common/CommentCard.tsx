@@ -16,6 +16,7 @@ import {
 } from "react-icons/bs";
 import { set } from "mongoose";
 import CommentForm from "./CommentForm";
+import useAuth from "@/hooks/useAuth";
 interface Props {
   comment: CommentResponse;
   showControls?: boolean;
@@ -37,6 +38,7 @@ export default function CommentCard({
   const [isDisplay, setIsDisplay] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [initialState, setInitialState] = useState("");
+  const userProfile = useAuth();
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const handleClickOutside = (event: MouseEvent) => {
@@ -55,13 +57,16 @@ export default function CommentCard({
   }, []);
 
   const displayReplyForm = () => {
-    setShowForm(true);
+    if (userProfile) {
+      setShowForm(true);
+    }
   };
   const handCommentSubmit = (commentStr: string) => {
     if (initialState) {
       onUpdateSubmit && onUpdateSubmit(commentStr);
     } else {
       // means we want to reply
+
       onReplySubmit && onReplySubmit(commentStr);
     }
     setShowForm(false);

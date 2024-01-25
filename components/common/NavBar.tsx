@@ -97,7 +97,7 @@ function ProfileMenu() {
         </Button>
       </MenuHandler>
       <MenuList className='p-1 dark:bg-black dark:border-blue-700'>
-        {profileMenuItems.map(({ label, icon }, key) => {
+        {profileMenuItems.map(({ label, icon }) => {
           return (
             <MenuItem
               key={label}

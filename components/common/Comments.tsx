@@ -28,7 +28,6 @@ export default function Comments({ belongsTo }: Props) {
     } else {
       updatedComments[chiefCommentIndex].replies = [reply];
     }
-
     setComments([...updatedComments]);
   };
 
@@ -90,7 +89,11 @@ export default function Comments({ belongsTo }: Props) {
       {userProFile ? (
         <CommentForm onSubmit={handleCreateComment} />
       ) : (
-        <span className='text-2xl pt-10'>Đăng nhập để bình luận</span>
+        <div className='mt-5'>
+          <span className='text-2xl dark:text-gray-300'>
+            Đăng nhập để bình luận
+          </span>
+        </div>
       )}
     </div>
   );

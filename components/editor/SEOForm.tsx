@@ -31,6 +31,7 @@ export default function SEOForm({ initialValue, title = "", onChange }: Props) {
     const newValues = { ...values, slug };
     setValues(newValues);
     onChange(newValues);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title]);
 
   useEffect(() => {
