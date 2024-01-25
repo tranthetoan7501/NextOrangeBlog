@@ -6,11 +6,12 @@ interface Props {
   comment: CommentResponse | undefined;
   userProFile: UserProfile | undefined;
   showControls?: boolean;
-  onUpdateSubmit?(content: string): void;
   handleReplySubmit?(replyComment: {
     content: string;
     repliedTo: string;
   }): void;
+  handleUpdateSubmit?(content: string, id: string): void;
+  handleOnDeleteClick?(comment: CommentResponse): void;
   onDeleteClick?(): void;
   onLikeClick?(): void;
 }
@@ -18,9 +19,9 @@ export default function CommentRelyGroup({
   comment,
   userProFile,
   showControls,
-  onUpdateSubmit,
+  handleUpdateSubmit,
   handleReplySubmit,
-  onDeleteClick,
+  handleOnDeleteClick,
 }: Props) {
   const [displayReplyBox, setDisplayReplyBox] = useState(false);
   return (
@@ -50,6 +51,13 @@ export default function CommentRelyGroup({
                       content,
                       repliedTo: comment.id,
                     })
+                  }
+                  onUpdateSubmit={(content) =>
+                    handleUpdateSubmit &&
+                    handleUpdateSubmit(content, comment.id)
+                  }
+                  onDeleteClick={() =>
+                    handleOnDeleteClick && handleOnDeleteClick(comment)
                   }
                 />
               );

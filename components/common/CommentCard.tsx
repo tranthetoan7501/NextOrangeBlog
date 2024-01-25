@@ -40,6 +40,7 @@ export default function CommentCard({
   const [initialState, setInitialState] = useState("");
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const userProfile = useAuth();
   const handleClickOutside = (event: MouseEvent) => {
     if (
       dropdownRef.current &&
@@ -58,11 +59,9 @@ export default function CommentCard({
   const displayReplyForm = () => {
     setShowForm(true);
     setInitialState("");
-    console.log(showForm);
   };
   const handleOnEditClick = () => {
     displayReplyForm();
-    console.log(content);
     setInitialState(content);
   };
   const handCommentSubmit = (commentStr: string) => {
@@ -94,13 +93,16 @@ export default function CommentCard({
             {parse(content)}
           </div>
           <div className='sm:w-36 w-80 flex items-center justify-center pr-2'>
-            {isDisplay && (
+            {userProfile?.id === comment.owner.id && isDisplay && (
               <div className='text-gray-600 text-sm font-bold dark:text-gray-300 ml-1 p-1 h-15 rounded-full flex-row justify-center hover:bg-gray-200  dark:hover:bg-gray-800 m-auto cursor-pointer hover:text-blue-500 dark:hover:text-blue-400'>
                 <BsPencilSquare
                   onClick={handleOnEditClick}
-                  className='dark:text-gray-900 text-gray-600 rounded-full dark:bg-gray-600 bg-gray-300  p-1 w-6 h-6 dark:hover:bg-white hover:bg-white dark:hover:text-red-700 hover:text-red-700'
+                  className='dark:text-gray-900 text-gray-600 rounded-full dark:bg-gray-600 bg-gray-300  p-1 w-6 h-6 dark:hover:bg-white hover:bg-white dark:hover:text-blue-700 hover:text-blue-700'
                 />
-                <BsFillTrashFill className='dark:text-gray-900 text-gray-600 rounded-full dark:bg-gray-600 bg-gray-300  p-1 w-6 h-6 mt-1 dark:hover:bg-white hover:bg-white dark:hover:text-blue-700 hover:text-blue-700' />
+                <BsFillTrashFill
+                  onClick={onDeleteClick}
+                  className='dark:text-gray-900 text-gray-600 rounded-full dark:bg-gray-600 bg-gray-300  p-1 w-6 h-6 mt-1 dark:hover:bg-white hover:bg-white dark:hover:text-red-700 hover:text-red-700'
+                />
               </div>
             )}
             {/* {isDisplay && (

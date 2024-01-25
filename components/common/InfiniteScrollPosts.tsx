@@ -84,7 +84,6 @@ export default function InfiniteScrollPosts({
 
       <ConfirmDialog
         visible={showConfirmModal}
-        handler={handleDeleteCancel}
         onCancel={handleDeleteCancel}
         onConfirm={handleOnDeleteConfirm}
         title='Are you sure?'

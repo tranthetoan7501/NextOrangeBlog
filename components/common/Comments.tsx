@@ -7,12 +7,16 @@ import { CommentResponse } from "@/utils/type";
 import CommentCard from "./CommentCard";
 
 import CommentRelyGroup from "./CommentRelyGroup";
+import { ConfirmDialog } from "./ConfirmDialog";
 interface Props {
   belongsTo: string;
 }
 
 export default function Comments({ belongsTo }: Props) {
   const [comments, setComments] = useState<CommentResponse[]>();
+  const [commentToDelete, setCommentToDelete] =
+    useState<CommentResponse | null>(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
   const userProFile = useAuth();
 
   const insertNewReplyComments = (reply: CommentResponse) => {
@@ -29,6 +33,24 @@ export default function Comments({ belongsTo }: Props) {
       updatedComments[chiefCommentIndex].replies = [reply];
     }
     setComments([...updatedComments]);
+  };
+  const updateDeletedComments = (deletedComment: CommentResponse) => {
+    if (!comments) return;
+    let newComments = [...comments];
+
+    if (deletedComment.chiefComment)
+      newComments = newComments.filter(({ id }) => id !== deletedComment.id);
+    else {
+      const chiefCommentIndex = newComments.findIndex(
+        ({ id }) => id === deletedComment.repliedTo
+      );
+      const newReplies = newComments[chiefCommentIndex].replies?.filter(
+        ({ id }) => id !== deletedComment.id
+      );
+      newComments[chiefCommentIndex].replies = newReplies;
+    }
+
+    setComments([...newComments]);
   };
 
   const handleCreateComment = async (content: string) => {
@@ -48,6 +70,62 @@ export default function Comments({ belongsTo }: Props) {
       .post("/api/comment/add-reply", replyComment)
       .then(({ data }) => insertNewReplyComments(data.comment))
       .catch((err) => console.log(err));
+  };
+  const handleUpdateSubmit = (content: string, id: string) => {
+    axios
+      .patch(`/api/comment?commentId=${id}`, { content })
+      .then(({ data }) => updateEditedComment(data.comment))
+      .catch((err) => console.log(err));
+  };
+  const handleOnDeleteConfirm = () => {
+    if (!commentToDelete) return;
+
+    axios
+      .delete(`/api/comment?commentId=${commentToDelete.id}`)
+      .then(({ data }) => {
+        if (data.removed) updateDeletedComments(commentToDelete);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setCommentToDelete(null);
+        setShowConfirmModal(false);
+      });
+  };
+  const handleOnDeleteClick = (comment: CommentResponse) => {
+    setCommentToDelete(comment);
+    setShowConfirmModal(true);
+  };
+  const handleOnDeleteCancel = () => {
+    setCommentToDelete(null);
+    setShowConfirmModal(false);
+  };
+  const updateEditedComment = (newComment: CommentResponse) => {
+    if (!comments) return;
+
+    let updatedComments = [...comments];
+
+    // To update the we can only change the content
+    // if edited comment is chief
+    if (newComment.chiefComment) {
+      const index = updatedComments.findIndex(({ id }) => id === newComment.id);
+      updatedComments[index].content = newComment.content;
+    }
+    // otherwise updating comment from replies
+    else {
+      const chiefCommentIndex = updatedComments.findIndex(
+        ({ id }) => id === newComment.repliedTo
+      );
+
+      let newReplies = updatedComments[chiefCommentIndex].replies;
+      newReplies = newReplies?.map((comment) => {
+        if (comment.id === newComment.id) comment.content = newComment.content;
+        return comment;
+      });
+
+      updatedComments[chiefCommentIndex].replies = newReplies;
+    }
+
+    setComments([...updatedComments]);
   };
 
   useEffect(() => {
@@ -71,11 +149,17 @@ export default function Comments({ belongsTo }: Props) {
               onReplySubmit={(content) =>
                 handleReplySubmit({ content, repliedTo: comment.id })
               }
+              onUpdateSubmit={(content) =>
+                handleUpdateSubmit(content, comment.id)
+              }
+              onDeleteClick={() => handleOnDeleteClick(comment)}
             />
             <CommentRelyGroup
               comment={comment}
               userProFile={userProFile}
               handleReplySubmit={handleReplySubmit}
+              handleUpdateSubmit={handleUpdateSubmit}
+              handleOnDeleteClick={handleOnDeleteClick}
             />
           </div>
         ))}
@@ -90,6 +174,13 @@ export default function Comments({ belongsTo }: Props) {
           </span>
         </div>
       )}
+      <ConfirmDialog
+        visible={showConfirmModal}
+        title='Xác nhận xóa bình luận'
+        subTitle='Bạn có chắc chắn muốn xóa bình luận này?'
+        onConfirm={handleOnDeleteConfirm}
+        onCancel={handleOnDeleteCancel}
+      />
     </div>
   );
 }
