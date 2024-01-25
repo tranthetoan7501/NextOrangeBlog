@@ -24,7 +24,7 @@ export function ThumbnailSelector({ initialValue, onChange }: Props) {
     if (typeof initialValue === "string") setSelectedThumbnail(initialValue);
   }, [initialValue]);
   return (
-    <div className='w-32 ml-1'>
+    <div className='w-32 ml-1 relative'>
       <input
         hidden
         aria-hidden='true'

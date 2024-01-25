@@ -43,23 +43,7 @@ export default function SignInDialog({ open, handler: handleOpen }: Prop) {
               Sign In
             </Typography>
           </CardHeader>
-
-          {/* <CardBody className='flex flex-col gap-4'>
-            <Input label='Email' size='lg' crossOrigin={undefined} />
-            <Input label='Password' size='lg' crossOrigin={undefined} />
-            <div className='-ml-2.5'>
-              <Checkbox label='Remember Me' crossOrigin={undefined} />
-            </div>
-          </CardBody> */}
           <CardFooter className='pt-0'>
-            {/* <Button
-              variant='gradient'
-              className='mb-3'
-              onClick={handleOpen}
-              fullWidth
-            >
-              Sign In
-            </Button> */}
             <Typography
               variant='small'
               className='mt-4 mb-6 flex justify-center'

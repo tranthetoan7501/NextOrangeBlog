@@ -8,12 +8,20 @@ import {
   Input,
 } from "@material-tailwind/react";
 import { EditorContent } from "@tiptap/react";
+import { useCallback, useEffect, useId } from "react";
 
 interface Props {
   onSubmit: (content: string) => void;
   busy?: boolean;
+  onClose?(): void;
+  initialState?: string;
 }
-export default function CommentForm({ onSubmit, busy }: Props) {
+export default function CommentForm({
+  onSubmit,
+  busy,
+  initialState,
+  onClose,
+}: Props) {
   const { editor } = useEditorConfig({ placeholder: "Add your comment..." });
   const handleSubmit = () => {
     if (editor && !busy) {
@@ -30,7 +38,12 @@ export default function CommentForm({ onSubmit, busy }: Props) {
       handleSubmit();
     }
   };
+  useEffect(() => {
+    if (typeof initialState === "string")
+      editor?.chain().focus().setContent(initialState).run();
+  }, [editor, initialState]);
   const userProfile = useAuth();
+
   return (
     <div className='pr-2 pt-4 flex justify-center space-x-4'>
       <div className='flex w-full flex-row items-center rounded-[99px] border border-gray-900/10 bg-gray-900/5 p-2 dark:border-purple-600 '>

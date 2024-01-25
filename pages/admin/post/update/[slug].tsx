@@ -21,11 +21,7 @@ export default function Update({ post }: Props) {
       const formData = generateFormData(post);
       // submit our post
       await connection?.disconnect();
-      const {
-        data,
-      }: any = async () => {
-        return await axios.patch("/api/posts/" + post.id, formData);
-      };
+      const { data } = await axios.patch("/api/posts/" + post.id, formData);
 
       if (data.isSuccess) {
         toast("Update successfully!", {
@@ -58,7 +54,7 @@ export const getServerSideProps: GetServerSideProps<
 > = async (context) => {
   try {
     const slug = context.query.slug as string;
-    console.log(slug);
+
     connection = await dbConnect();
     const post = await Post.findOne({ slug });
     if (!post) return { notFound: true };

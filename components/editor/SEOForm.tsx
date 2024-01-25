@@ -47,7 +47,7 @@ export default function SEOForm({ initialValue, title = "", onChange }: Props) {
         name='slug'
         onChange={handleChange}
         value={values.slug}
-        color='green'
+        color='blue'
         label='Slug'
         crossOrigin={undefined}
       />
@@ -56,7 +56,7 @@ export default function SEOForm({ initialValue, title = "", onChange }: Props) {
         name='tags'
         onChange={handleChange}
         value={values.tags}
-        color='green'
+        color='blue'
         label='Tags'
         crossOrigin={undefined}
       />
@@ -65,7 +65,7 @@ export default function SEOForm({ initialValue, title = "", onChange }: Props) {
         name='meta'
         onChange={handleChange}
         value={values.meta}
-        color='green'
+        color='blue'
         label={"Meta description " + values.meta.length + "/150"}
       />
     </div>

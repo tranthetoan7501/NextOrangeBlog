@@ -35,9 +35,7 @@ export default function GallaryModel({
     onFileSelect(file);
   };
   const handleSelection = () => {
-    console.log("images", images);
     if (selectedImage < 0 || !images) return handleClose();
-    console.log("selectedImage", { src: images[selectedImage].src, altText });
     onSelect({ src: images[selectedImage].src, altText });
     handleClose();
     setAltText("");
@@ -45,7 +43,7 @@ export default function GallaryModel({
   };
   return (
     <ModalContainer visible={visible} onClose={onClose}>
-      <div className='max-w-4xl p-2 border-2 border-green-500 bg-white dark:bg-primary rounded my-z-1000'>
+      <div className='max-w-4xl p-2 border-2 border-purple-500 bg-white dark:bg-black rounded '>
         <div className='flex'>
           {/* gallery */}
           <div className='basis-[83%] max-h-[450px] overflow-y-auto '>
@@ -66,7 +64,7 @@ export default function GallaryModel({
                   id='image-input'
                 />
                 <label htmlFor='image-input'>
-                  <div className='w-full border-2 hover:text-lg  border-orange-500 h-12 text-orange-700 flex items-center justify-center space-x-2 pt-1 cursor-pointer rounded'>
+                  <div className='w-full border-2 hover:text-lg  border-blue-500 h-12 text-cyan-700 flex items-center justify-center space-x-2 pt-1 cursor-pointer rounded'>
                     <AiOutlineCloudUpload />
                     <span>Upload Image</span>
                   </div>

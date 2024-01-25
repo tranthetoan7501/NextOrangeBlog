@@ -28,6 +28,7 @@ import SignInDialog from "./SignInDialog";
 import { UserProfile } from "@/utils/type";
 import Image from "next/image";
 import SearchDialog from "./SearchDialog";
+import Link from "next/link";
 
 // profile menu component
 const profileMenuItems = [
@@ -259,13 +260,15 @@ export function NavBar() {
           className='border dark:border-purple-700'
           src='/penguin.png'
         />
-        <Image
-          src='/text.png'
-          className='mx-3'
-          alt='hey tell me'
-          width={90}
-          height={30}
-        ></Image>
+        <Link href='/'>
+          <Image
+            src='/text.png'
+            className='mx-3'
+            alt='hey tell me'
+            width={90}
+            height={30}
+          ></Image>
+        </Link>
         <div className='absolute top-2/4 left-2/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block'>
           <NavList />
         </div>

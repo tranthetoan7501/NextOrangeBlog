@@ -145,18 +145,18 @@ export default function Editor({
 
   return (
     <>
-      <div className='flex items-center justify-between mb-3 my-z-100'>
+      <div className='flex items-center justify-between mb-3'>
         <ThumbnailSelector
           initialValue={post.thumbnail as string}
           onChange={updateThumbnail}
         />
-        <div className='hidden sm:inline-block'>
+        <div className='hidden sm:inline-block relative'>
           <ActionButton busy={busy} title={btnTitle} onClick={handleSubmit} />
         </div>
       </div>
       <input
         type='text'
-        className='outline-none bg-transparent w-full border-0 border-b-[1px] border-blue-500 dark:border-secondary-light text-4xl font-semibold text-green-700 dark:text-primary mb-3'
+        className='outline-none bg-transparent relative w-full border-0 border-b-[1px] border-blue-500 dark:border-secondary-light text-4xl font-semibold text-blue-700 dark:text-primary mb-3'
         placeholder='Title'
         onChange={updateTitle}
         value={post.title}
