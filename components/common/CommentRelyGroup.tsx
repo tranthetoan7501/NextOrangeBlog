@@ -28,7 +28,7 @@ export default function CommentRelyGroup({
       {comment?.replies?.length ? (
         <div className='w-[93%] ml-auto pt-1'>
           <span
-            className='hover:underline cursor-pointer pt-2 hover:text-blue-500'
+            className='hover:underline cursor-pointer dark:text-gray-400 pt-2 hover:text-blue-500 dark:hover:text-blue-300'
             onClick={() => {
               setDisplayReplyBox(true);
             }}
