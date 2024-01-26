@@ -36,6 +36,7 @@ export default function CommentCard({
   onLikeClick,
 }: Props) {
   const { owner, createdAt, content, likedByOwner, likes } = comment;
+  const [likeView, setLikeView] = useState(likes);
   const { name, avatar } = owner;
   const [isDisplay, setIsDisplay] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -66,6 +67,15 @@ export default function CommentCard({
     displayReplyForm();
     setInitialState(content);
   };
+  const handleOnLikeClick = () => {
+    if (likedByOwner) {
+      setLikeView(likes - 1);
+    } else {
+      setLikeView(likes + 1);
+    }
+
+    onLikeClick && onLikeClick();
+  };
   const handCommentSubmit = (commentStr: string) => {
     if (initialState) {
       onUpdateSubmit && onUpdateSubmit(commentStr);
@@ -93,7 +103,7 @@ export default function CommentCard({
           <div className='rounded-2xl dark:bg-blue-300 bg-gray-200  pl-4 pr-6 py-2 ml-4 mr-2 relative'>
             <div className='font-bold'>{name}</div>
             {parse(content)}
-            <HeartLike likes={likes} />
+            <HeartLike likes={likeView} />
           </div>
           <div className='sm:w-40 w-80 flex  items-center justify-center pr-2'>
             {userProfile?.id === comment.owner.id && isDisplay && (
@@ -116,7 +126,7 @@ export default function CommentCard({
             {commentTime(createdAt)}
           </span>
           <span
-            onClick={onLikeClick}
+            onClick={handleOnLikeClick}
             className={
               "text-gray-900 dark:text-gray-300 text-sm pl-4 cursor-pointer w-12 text-center hover:text-pink-600 dark:hover:text-pink-400 " +
               (likedByOwner ? "text-pink-600 dark:text-pink-400" : "")
