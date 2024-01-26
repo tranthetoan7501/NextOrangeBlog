@@ -18,7 +18,7 @@ export default function InsertLink({ onSubmit }: Props) {
     setVisible(false);
   };
 
-  const dropdownRef = useRef<HTMLDivElement | null>(null); // Specify the type
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const toggleDropdown = () => {
     setVisible(!visible);

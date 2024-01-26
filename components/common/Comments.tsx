@@ -91,6 +91,12 @@ export default function Comments({ belongsTo }: Props) {
         setShowConfirmModal(false);
       });
   };
+  const handleOnLikeClick = (comment: CommentResponse) => {
+    axios
+      .post("/api/comment/update-like", { commentId: comment.id })
+      .then(({ data }) => updateLikedComments(data.comment))
+      .catch((err) => console.log(err));
+  };
   const handleOnDeleteClick = (comment: CommentResponse) => {
     setCommentToDelete(comment);
     setShowConfirmModal(true);
@@ -127,6 +133,30 @@ export default function Comments({ belongsTo }: Props) {
 
     setComments([...updatedComments]);
   };
+  const updateLikedComments = (likedComment: CommentResponse) => {
+    if (!comments) return;
+    let newComments = [...comments];
+
+    if (likedComment.chiefComment)
+      newComments = newComments.map((comment) => {
+        if (comment.id === likedComment.id) return likedComment;
+        return comment;
+      });
+    else {
+      const chiefCommentIndex = newComments.findIndex(
+        ({ id }) => id === likedComment.repliedTo
+      );
+      const newReplies = newComments[chiefCommentIndex].replies?.map(
+        (reply) => {
+          if (reply.id === likedComment.id) return likedComment;
+          return reply;
+        }
+      );
+      newComments[chiefCommentIndex].replies = newReplies;
+    }
+
+    setComments([...newComments]);
+  };
 
   useEffect(() => {
     axios(`/api/comment?belongsTo=${belongsTo}`)
@@ -153,6 +183,7 @@ export default function Comments({ belongsTo }: Props) {
                 handleUpdateSubmit(content, comment.id)
               }
               onDeleteClick={() => handleOnDeleteClick(comment)}
+              onLikeClick={() => handleOnLikeClick(comment)}
             />
             <CommentRelyGroup
               comment={comment}
@@ -160,6 +191,7 @@ export default function Comments({ belongsTo }: Props) {
               handleReplySubmit={handleReplySubmit}
               handleUpdateSubmit={handleUpdateSubmit}
               handleOnDeleteClick={handleOnDeleteClick}
+              handleOnLikeClick={handleOnLikeClick}
             />
           </div>
         ))}

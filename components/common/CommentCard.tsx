@@ -17,6 +17,8 @@ import {
 import { set } from "mongoose";
 import CommentForm from "./CommentForm";
 import useAuth from "@/hooks/useAuth";
+import { HeartIcon } from "@heroicons/react/20/solid";
+import HeartLike from "./HeartLike";
 interface Props {
   comment: CommentResponse;
   showControls?: boolean;
@@ -88,47 +90,24 @@ export default function CommentCard({
       />
       <div className='w-full'>
         <div className='flex'>
-          <div className='rounded-2xl dark:bg-blue-300 bg-gray-200 pl-4 pr-3 py-2 ml-4'>
+          <div className='rounded-2xl dark:bg-blue-300 bg-gray-200  pl-4 pr-5 py-2 ml-4 mr-2 relative'>
             <div className='font-bold'>{name}</div>
             {parse(content)}
+            <HeartLike likes={likes} />
           </div>
-          <div className='sm:w-36 w-80 flex items-center justify-center pr-2'>
+          <div className='sm:w-40 w-80 flex  items-center justify-center pr-2'>
             {userProfile?.id === comment.owner.id && isDisplay && (
-              <div className='text-gray-600 text-sm font-bold dark:text-gray-300 ml-1 p-1 h-15 rounded-full flex-row justify-center hover:bg-gray-200  dark:hover:bg-gray-800 m-auto cursor-pointer hover:text-blue-500 dark:hover:text-blue-400'>
+              <div className='text-gray-600 text-sm font-bold dark:text-gray-300 ml-1 p-1 h-15 rounded-full flex-row justify-center  m-auto cursor-pointer hover:text-blue-500 dark:hover:text-blue-400'>
                 <BsPencilSquare
                   onClick={handleOnEditClick}
-                  className='dark:text-gray-900 text-gray-600 rounded-full dark:bg-gray-600 bg-gray-300  p-1 w-6 h-6 dark:hover:bg-white hover:bg-white dark:hover:text-blue-700 hover:text-blue-700'
+                  className='dark:text-gray-900 text-gray-600 rounded-full dark:bg-gray-600 bg-gray-300  p-1 w-6 h-6 dark:hover:bg-white hover:bg-white border hover:border-gray-300 dark:border-none dark:hover:text-blue-700 hover:text-blue-700'
                 />
                 <BsFillTrashFill
                   onClick={onDeleteClick}
-                  className='dark:text-gray-900 text-gray-600 rounded-full dark:bg-gray-600 bg-gray-300  p-1 w-6 h-6 mt-1 dark:hover:bg-white hover:bg-white dark:hover:text-red-700 hover:text-red-700'
+                  className='dark:text-gray-900 text-gray-600 rounded-full dark:bg-gray-600 bg-gray-300  p-1 w-6 h-6 mt-1 dark:hover:bg-white border hover:border-gray-300 hover:bg-white dark:border-none  dark:hover:text-red-700 hover:text-red-700'
                 />
               </div>
             )}
-            {/* {isDisplay && (
-              <Popover placement='bottom'>
-                <PopoverHandler>
-                  <span className='text-gray-600 font-bold text-xl dark:text-gray-300 ml-1 flex items-center pb-2 justify-center rounded-full hover:bg-gray-200  dark:hover:bg-gray-800 w-6 h-6 m-auto cursor-pointer hover:text-blue-500 dark:hover:text-blue-400'>
-                    ...
-                  </span>
-                </PopoverHandler>
-                <PopoverContent className='my-z-100 p-1 dark:bg-black border dark:border-purple-700'>
-                  <span className='pb-1' onClick={handleOnEditClick}>
-                    <div className='flex w-20 py-2 items-center px-2 rounded-lg text-black hover:bg-blue-300 dark:hover:bg-blue-800 cursor-pointer'>
-                      <BsPencilSquare className='dark:text-white' />
-                      <span className='ml-3 dark:text-white'>Edit</span>
-                    </div>
-                  </span>
-
-                  <span className='block'>
-                    <div className='flex  w-20 px-2 py-2 items-center rounded-lg mt-1 text-black hover:bg-blue-300 dark:hover:bg-purple-800  cursor-pointer'>
-                      <BsFillTrashFill className='dark:text-white' />
-                      <span className='ml-3 dark:text-white'>Delete</span>
-                    </div>
-                  </span>
-                </PopoverContent>
-              </Popover>
-            )} */}
           </div>
         </div>
 
@@ -136,7 +115,13 @@ export default function CommentCard({
           <span className='text-gray-500 text-sm pl-5'>
             {commentTime(createdAt)}
           </span>
-          <span className='text-gray-900 dark:text-gray-300 text-sm pl-4 cursor-pointer hover:text-pink-600 dark:hover:text-pink-400'>
+          <span
+            onClick={onLikeClick}
+            className={
+              "text-gray-900 dark:text-gray-300 text-sm pl-4 cursor-pointer w-12 text-center hover:text-pink-600 dark:hover:text-pink-400 " +
+              (likedByOwner ? "text-pink-600 dark:text-pink-400" : "")
+            }
+          >
             Thích
           </span>
           <span

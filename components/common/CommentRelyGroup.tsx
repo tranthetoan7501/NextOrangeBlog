@@ -12,8 +12,7 @@ interface Props {
   }): void;
   handleUpdateSubmit?(content: string, id: string): void;
   handleOnDeleteClick?(comment: CommentResponse): void;
-  onDeleteClick?(): void;
-  onLikeClick?(): void;
+  handleOnLikeClick?(comment: CommentResponse): void;
 }
 export default function CommentRelyGroup({
   comment,
@@ -22,6 +21,7 @@ export default function CommentRelyGroup({
   handleUpdateSubmit,
   handleReplySubmit,
   handleOnDeleteClick,
+  handleOnLikeClick,
 }: Props) {
   const [displayReplyBox, setDisplayReplyBox] = useState(false);
   return (
@@ -53,11 +53,13 @@ export default function CommentRelyGroup({
                     })
                   }
                   onUpdateSubmit={(content) =>
-                    handleUpdateSubmit &&
-                    handleUpdateSubmit(content, comment.id)
+                    handleUpdateSubmit && handleUpdateSubmit(content, reply.id)
                   }
                   onDeleteClick={() =>
-                    handleOnDeleteClick && handleOnDeleteClick(comment)
+                    handleOnDeleteClick && handleOnDeleteClick(reply)
+                  }
+                  onLikeClick={() =>
+                    handleOnLikeClick && handleOnLikeClick(reply)
                   }
                 />
               );
