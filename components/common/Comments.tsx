@@ -92,6 +92,7 @@ export default function Comments({ belongsTo }: Props) {
       });
   };
   const handleOnLikeClick = (comment: CommentResponse) => {
+    if (!userProFile) return;
     axios
       .post("/api/comment/update-like", { commentId: comment.id })
       .then(({ data }) => updateLikedComments(data.comment))
