@@ -90,7 +90,7 @@ export default function CommentCard({
       />
       <div className='w-full'>
         <div className='flex'>
-          <div className='rounded-2xl dark:bg-blue-300 bg-gray-200  pl-4 pr-5 py-2 ml-4 mr-2 relative'>
+          <div className='rounded-2xl dark:bg-blue-300 bg-gray-200  pl-4 pr-6 py-2 ml-4 mr-2 relative'>
             <div className='font-bold'>{name}</div>
             {parse(content)}
             <HeartLike likes={likes} />
