@@ -56,9 +56,8 @@ export function PostCard({
               {getFirst10Words(title)}
             </Typography>
             <Typography className='font-roboto dark:text-purple-400'>
-              {meta + " " ||
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."}
-              ...
+              {formatContent(meta) ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum ..."}
             </Typography>
           </div>
 
@@ -125,4 +124,13 @@ function getFirst10Words(str: string) {
     first10Words = wordsArray.slice(0, 8);
   }
   return first10Words.join(" ") + " ...";
+}
+
+function formatContent(str: string) {
+  // Chia chuỗi thành mảng các từ
+  const wordsArray = str.split(/\s+/);
+  // Lấy 10 từ đầu tiên
+  let content = wordsArray.slice(0, wordsArray.length - 3);
+
+  return content.join(" ") + " ...";
 }
