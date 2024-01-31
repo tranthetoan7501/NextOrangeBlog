@@ -6,10 +6,14 @@ import axios from "axios";
 import AppHeader from "@/components/common/AppHeader";
 import InfiniteScrollPosts from "@/components/common/InfiniteScrollPosts";
 import { filterPosts } from "@/utils/helper";
+import { useSearchParams } from "next/navigation";
 
 type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
 
 export default function Home({ posts }: Props) {
+  const searchParams = useSearchParams();
+
+  const title = searchParams.get("title");
   const [postsToRender, setPostsToRender] = useState(posts);
   const [hasMorePosts, setHasMorePosts] = useState(true);
   const isAdmin = false;

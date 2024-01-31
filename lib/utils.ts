@@ -25,24 +25,30 @@ export const readFile = <T extends object>(
     form.parse(req, (err, fields, files) => {
       if (err) {
         reject(err);
-        console.log("err", err);
       }
       resolve({ files, body: fields as T });
     });
   });
 };
 
-export const readPostsFromDb = async (limit: number, pageNo: number) => {
+export const readPostsFromDb = async (
+  limit: number,
+  pageNo: number,
+  title?: string
+) => {
   if (!limit || limit > 10)
     throw Error("Please use limit under 10 and a valid pageNo");
   const skip = limit * pageNo;
   await dbConnect();
-  const posts = await Post.find()
+  let tempTitle = "";
+  if (title) tempTitle = title?.trim();
+  const posts = await Post.find({
+    title: { $regex: tempTitle, $options: "i" },
+  })
     .sort({ createdAt: "desc" })
     .select("-content")
     .skip(skip)
     .limit(limit);
-
   return posts;
 };
 
@@ -109,7 +115,6 @@ export const isAdmin = async (req: NextApiRequest, res: NextApiResponse) => {
   );
   await dbConnect();
   const user = await User.findOne({ email: session?.user.email });
-  console.log("session?.user", user);
   return user && user.role === "admin";
 };
 

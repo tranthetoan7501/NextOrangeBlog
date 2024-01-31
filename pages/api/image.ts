@@ -57,7 +57,6 @@ async function uploadNewImage(
 
 async function readAllImages(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
-    console.log("readAllImages");
     const { resources } = await cloudinary.api.resources({
       resource_type: "image",
       type: "upload",

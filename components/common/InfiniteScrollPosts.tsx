@@ -42,7 +42,6 @@ export default function InfiniteScrollPosts({
   };
   const handleOnDeleteConfirm = async () => {
     if (!postToRemove) return handleDeleteCancel();
-    console.log(`/api/posts/${postToRemove.id}`);
 
     setShowConfirmModal(false);
     setRemoving(true);
@@ -52,10 +51,8 @@ export default function InfiniteScrollPosts({
     }: any = async () => {
       return await axios.delete(`/api/posts/${postToRemove.id}`);
     };
-    console.log(data);
 
     if (data.removed) {
-      console.log(onPostDeleted);
       onPostDeleted(postToRemove);
     }
 

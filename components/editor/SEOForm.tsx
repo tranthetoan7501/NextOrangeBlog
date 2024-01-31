@@ -23,7 +23,6 @@ export default function SEOForm({ initialValue, title = "", onChange }: Props) {
     if (name === "meta") value = value.substring(0, 150);
     const newValues = { ...values, [name]: value };
     setValues(newValues);
-    console.log(newValues);
     onChange(newValues);
   };
   useEffect(() => {

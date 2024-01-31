@@ -11,6 +11,7 @@ import {
   HomeIcon,
   CogIcon,
   PlusCircleIcon,
+  DocumentPlusIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
@@ -32,12 +33,14 @@ export function MySpeedDial() {
               </Typography>
             </SpeedDialAction>
           </Link>
-          <SpeedDialAction className='h-16 w-16'>
-            <CogIcon className='h-5 w-5' />
-            <Typography color='blue-gray' className='text-xs font-normal'>
-              Settings
-            </Typography>
-          </SpeedDialAction>
+          <Link href='/admin'>
+            <SpeedDialAction className='h-16 w-16'>
+              <DocumentPlusIcon className='h-5 w-5' />
+              <Typography color='blue-gray' className='text-xs font-normal'>
+                Admin
+              </Typography>
+            </SpeedDialAction>
+          </Link>
           <SpeedDialAction className='h-16 w-16'>
             <Link href='/admin/post/create'>
               <PlusCircleIcon className='h-5 w-5' />

@@ -94,7 +94,6 @@ export default function Editor({
   });
   const updateSeoValue = (result: SeoResult) => {
     setPost({ ...post, ...result });
-    //console.log(post);
   };
   const updateTitle = ({ target }: { target: HTMLInputElement }) =>
     setPost({ ...post, title: target.value });
@@ -114,7 +113,6 @@ export default function Editor({
     setImages([data, ...images]);
   };
   const handleImageSelection = (result: ImageSelectionResult) => {
-    console.log(result);
     editor
       ?.chain()
       .focus()

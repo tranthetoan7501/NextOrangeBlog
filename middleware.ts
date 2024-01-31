@@ -8,7 +8,6 @@ export default withAuth(
   {
     callbacks: {
       authorized({ token }) {
-        console.log("token.role", token?.role);
         return token?.role === "admin";
       },
     },

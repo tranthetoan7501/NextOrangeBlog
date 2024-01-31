@@ -7,8 +7,18 @@ const nextConfig = {
     domains: [
       "res.cloudinary.com",
       "images.unsplash.com",
-      "lh3.googleusercontent.com",
+      "media.fmplus.com.vn",
+      "localhost",
     ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "media.fmplus.com.vn",
+        port: "",
+        pathname: "/uploads/**",
+      },
+    ],
+    formats: ["image/avif", "image/webp"],
   },
 };
 

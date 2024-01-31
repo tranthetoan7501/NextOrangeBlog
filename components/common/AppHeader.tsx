@@ -25,7 +25,7 @@ export default function AppHeader({ title, desc, thumbnail }: Props) {
         content={
           desc
             ? desc
-            : "HeyTellme Blog - trang blog của một sinh viên khô khan,Hey! Tell me hãy kể câu chuyện của bạn, biết đâu nó giống câu chuyện của tôi"
+            : "HeyTellme Blog - Hey! Tell me hãy kể câu chuyện của bạn, biết đâu nó giống câu chuyện của tôi"
         }
       />
       <meta name='robots' content='index, follow'></meta>
