@@ -59,7 +59,7 @@ export default function SinglePost({ post }: Props) {
         <div className='prose prose-lg dark:prose-invert max-w-5xl mx-auto z-40'>
           {parse(post?.content)}
         </div>
-        <Comments belongsTo={post.id}/>
+        <Comments belongsTo={post.id} />
       </div>
     </div>
   );

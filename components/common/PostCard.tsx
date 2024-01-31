@@ -53,7 +53,7 @@ export function PostCard({
               color='blue-gray'
               className='mb-2 font-roboto dark:text-cyan-500'
             >
-              {title}
+              {getFirst10Words(title)}
             </Typography>
             <Typography className='font-roboto dark:text-purple-400'>
               {meta + " " ||
@@ -112,4 +112,17 @@ export function PostCard({
       </CardFooter>
     </Card>
   );
+}
+
+function getFirst10Words(str: string) {
+  // Chia chuỗi thành mảng các từ
+  const wordsArray = str.split(/\s+/);
+  // Lấy 10 từ đầu tiên
+  if (str.length < 80) return str;
+  let first10Words = wordsArray.slice(0, 14);
+
+  if (first10Words.join(" ").length > 80) {
+    first10Words = wordsArray.slice(0, 8);
+  }
+  return first10Words.join(" ") + " ...";
 }

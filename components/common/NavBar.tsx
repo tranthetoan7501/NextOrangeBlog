@@ -190,9 +190,9 @@ function ProfileMenu() {
 const navListItems = [
   { href: "/", label: "Trang chủ" },
   //{ href: "/admin", label: "Dashboard" },
-  { href: "/admin/posts", label: "Bài viết" },
+  { href: "/", label: "Bài viết" },
   { href: "/countdown", label: "Đếm ngày" },
-  { href: "/admin/contact", label: "Thông tin" },
+  { href: "/about", label: "Thông tin" },
   //{ href: "/admin/comments", label: "Tìm kiếm" },
 ];
 
